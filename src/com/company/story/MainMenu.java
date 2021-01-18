@@ -1,6 +1,7 @@
 package com.company.story;
 
 import com.company.CRUD.Delete;
+import com.company.CRUD.Read;
 import com.company.utils.ConstantString;
 import com.company.utils.FileHelper;
 import com.company.utils.ScanerFileName;
@@ -53,9 +54,8 @@ public class MainMenu {
         while (!command.equalsIgnoreCase(ConstantString.EXIT)) {
             switch (command.toLowerCase(Locale.ROOT)) {
                 case ConstantString.READ:
-                    for (Person p : personList) {
-                        System.out.println(p);
-                    }
+                    Read read = new Read();
+                    read.read(personList);
                     fourCommand();
                     doThis(scanner.nextLine());
                     break;
