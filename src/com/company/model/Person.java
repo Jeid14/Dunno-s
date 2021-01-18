@@ -70,13 +70,13 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
+        return "" +
                 "id=" + id +
                 " firstName='" + firstName + '\'' +
                 " lastName='" + lastName + '\'' +
                 " age=" + age +
                 " city='" + city + '\'' +
-                '}'+
+                +
                 '\n';
     }
 
