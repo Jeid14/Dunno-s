@@ -16,7 +16,6 @@ public class Table {
     public void create(List<Person>personList) throws IOException {
 //        List<Person> personArrayList =new ExecutorFactory().getInstanceByFormat("json").read("1.json");;
        // personArrayList.add(new Person(11,"33","44",55,"ii"));
-        int count =0;
         DefaultTableModel model = new DefaultTableModel();
         JTable table = new JTable(model);
         model.addColumn("ID");
