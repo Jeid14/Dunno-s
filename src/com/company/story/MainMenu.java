@@ -9,6 +9,7 @@ import com.company.executor.ExecutorFactory;
 import com.company.CRUD.Create;
 import com.company.model.Person;
 import com.company.CRUD.Update;
+import com.company.visual.Table;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,8 +55,10 @@ public class MainMenu {
         while (!command.equalsIgnoreCase(ConstantString.EXIT)) {
             switch (command.toLowerCase(Locale.ROOT)) {
                 case ConstantString.READ:
-                    Read read = new Read();
-                    read.read(personList);
+
+                    Table table = new Table();
+                    table.create(personList);
+                
                     fourCommand();
                     doThis(scanner.nextLine());
                     break;
