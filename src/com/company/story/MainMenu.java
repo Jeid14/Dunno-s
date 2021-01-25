@@ -9,6 +9,7 @@ import com.company.executor.ExecutorFactory;
 import com.company.CRUD.Create;
 import com.company.model.Person;
 import com.company.CRUD.Update;
+import com.company.visual.InterfaceMain;
 import com.company.visual.Table;
 
 import java.io.File;
@@ -29,6 +30,7 @@ public class MainMenu {
 
     List<Person> newPersons = new ArrayList<>();
 
+
     public void mainMenu() throws IOException {
         System.out.println(ConstantString.WELCOME);
         System.out.println(ConstantString.ENTER_FILE_NAME);
@@ -48,6 +50,7 @@ public class MainMenu {
     public void doThis(String command) throws IOException {
 
         List<Person> personList = new ExecutorFactory().getInstanceByFormat(fileExtension).read(fileName);
+        Table table = new Table(personList);
         if (command.equalsIgnoreCase(ConstantString.EXIT)) {
             System.exit(0);
         }
@@ -56,8 +59,9 @@ public class MainMenu {
             switch (command.toLowerCase(Locale.ROOT)) {
                 case ConstantString.READ:
 
-                    Table table = new Table();
-                    table.create(personList);
+
+                    InterfaceMain interfaceMain = new InterfaceMain(personList,table);
+                    interfaceMain.addAllElement();
                 
                     fourCommand();
                     doThis(scanner.nextLine());
