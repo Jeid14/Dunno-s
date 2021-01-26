@@ -41,7 +41,7 @@ public class ControlPanel {
         f.add(label4);
         f.add(label5);
 
-        f.add(textField1);
+      //  f.add(textField1);
         f.add(textField2);
         f.add(textField3);
         f.add(textField4);
