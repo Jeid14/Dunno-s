@@ -34,4 +34,7 @@ public class ConstantString {
     public static String ENTER_ID = "Enter id:";
     public static String ENTER_AGE = "Enter age:";
 
+
+    public static String HEAD_CONTROL_PANEL = "CONTROL PANEL";
+    public static String BUTTON_CLEAR_ALL = "Clear All";
 }
