@@ -1,5 +1,6 @@
 package com.company.visual;
 
+
 import com.company.executor.ExecutorFactory;
 import com.company.model.Person;
 
@@ -23,6 +24,7 @@ public class InterfaceMain extends JFrame {
         frame.add(controlPanel.createControlPanel());
         frame.add(buttons.createFooter());
         frame.add(table.createTable());
+
 
         frame.setLayout(null);
         frame.setVisible(true);

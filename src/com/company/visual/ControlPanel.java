@@ -3,6 +3,7 @@ package com.company.visual;
 import com.company.utils.ConstantString;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 public class ControlPanel {
@@ -56,6 +57,7 @@ public class ControlPanel {
         panelControl.setVisible(true);
 
         return panelControl;
+
     }
 
 }

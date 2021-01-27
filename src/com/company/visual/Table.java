@@ -1,17 +1,28 @@
 package com.company.visual;
 
+
 import com.company.executor.ExecutorFactory;
 import com.company.model.Person;
 import com.company.utils.ConstantString;
+import com.company.CRUD.Read;
+import com.company.executor.ExecutorFactory;
+import com.company.model.Person;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
+
 import java.util.*;
 import java.util.List;
 
+import java.time.Period;
+import java.util.*;
+
+
 
 public class Table {
+
 
     public JPanel createTable() throws IOException {
 
@@ -29,7 +40,8 @@ public class Table {
         model.addColumn(ConstantString.ENTER_LAST_NAME);
         model.addColumn(ConstantString.ENTER_CITY);
         model.addColumn(ConstantString.ENTER_AGE);
-        for(Person p:personList) {
+
+for(Person p:personList) {
             model.addRow(new String[]{String.valueOf(p.getId()),p.getFirstName(),p.getLastName(),p.getCity(),String.valueOf(p.getAge())});
         }
         Vector data = model.getDataVector();
@@ -42,6 +54,7 @@ public class Table {
             colData.add(row.get(mColIndex));
         }
 
+
         panelTable.add(table);
 
         JScrollPane scrollPane = new JScrollPane(table,
@@ -52,5 +65,6 @@ public class Table {
         panelTable.add(scrollPane);
 
         return panelTable;
+
     }
 }
