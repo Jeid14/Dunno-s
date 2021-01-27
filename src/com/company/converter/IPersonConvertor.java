@@ -1,4 +1,4 @@
-package com.company.converterstr;
+package com.company.converter;
 
 import com.company.model.Person;
 import com.fasterxml.jackson.core.JsonProcessingException;

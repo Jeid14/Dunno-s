@@ -4,48 +4,60 @@ import com.company.utils.ConstantString;
 
 import javax.swing.*;
 
+import java.awt.*;
+
 public class ControlPanel {
 
-    public ControlPanel(){
+    public JPanel createControlPanel(){
 
-        JLabel label1 = new JLabel(ConstantString.ENTER_ID);
-        label1.setBounds(50, 30, 250, 40);
-        JLabel label2 = new JLabel(ConstantString.ENTER_FIRST_NAME);
-        label2.setBounds(50, 90, 250, 40);
-        JLabel label3 = new JLabel(ConstantString.ENTER_LAST_NAME);
-        label3.setBounds(50, 150, 250, 40);
-        JLabel label4 = new JLabel(ConstantString.ENTER_AGE);
-        label4.setBounds(50, 210, 250, 40);
-        JLabel label5 = new JLabel(ConstantString.ENTER_CITY);
-        label5.setBounds(50, 270, 250,40);
+        JPanel panelControl = new JPanel(new BorderLayout());
+        panelControl.setBounds(700,60,300,580);
+        panelControl.setOpaque(false);
 
-        JTextField textField1 = new JTextField();
-        textField1.setBounds(50, 60, 250, 40);
-        JTextField textField2 = new JTextField();
-        textField2.setBounds(50, 120, 250, 40);
-        JTextField textField3 = new JTextField();
-        textField3.setBounds(50, 180, 250, 40);
-        JTextField textField4 = new JTextField();
-        textField4.setBounds(50, 240, 250, 40);
-        JTextField textField5 = new JTextField();
-        textField5.setBounds(50, 300, 250, 40);
+        JLabel labelHead = new JLabel(ConstantString.HEAD_CONTROL_PANEL);
+        labelHead.setBounds(30,0,130,20);
 
-        JFrame f = new JFrame();
-        f.setSize(700, 500);
-        f.setLayout(null);
-        f.setVisible(true);
+        JLabel labelId = new JLabel(ConstantString.ENTER_ID);
+        labelId.setBounds(10, 25, 150, 25);
+        JLabel labelFirstName = new JLabel(ConstantString.ENTER_FIRST_NAME);
+        labelFirstName.setBounds(10, 95, 150, 25);
+        JLabel labelLastName = new JLabel(ConstantString.ENTER_LAST_NAME);
+        labelLastName.setBounds(10, 165, 150, 25);
+        JLabel labelCity = new JLabel(ConstantString.ENTER_CITY);
+        labelCity.setBounds(10, 235, 150, 25);
+        JLabel labelAge = new JLabel(ConstantString.ENTER_AGE);
+        labelAge.setBounds(10, 305, 150,25);
 
-        f.add(label1);
-        f.add(label2);
-        f.add(label3);
-        f.add(label4);
-        f.add(label5);
 
-        f.add(textField1);
-        f.add(textField2);
-        f.add(textField3);
-        f.add(textField4);
-        f.add(textField5);
+        JTextField textFieldId = new JTextField();
+        textFieldId.setBounds(10, 50, 150, 25);
+        JTextField textFieldFirstName = new JTextField();
+        textFieldFirstName.setBounds(10, 120, 150, 25);
+        JTextField textFieldLastName = new JTextField();
+        textFieldLastName.setBounds(10, 190, 150, 25);
+        JTextField textFieldCity = new JTextField();
+        textFieldCity.setBounds(10, 260, 150, 25);
+        JTextField textFieldAge = new JTextField();
+        textFieldAge.setBounds(10, 330, 150, 25);
+
+        panelControl.add(labelHead);
+        panelControl.add(labelId);
+        panelControl.add(labelFirstName);
+        panelControl.add(labelLastName);
+        panelControl.add(labelCity);
+        panelControl.add(labelAge);
+
+        panelControl.add(textFieldId);
+        panelControl.add(textFieldFirstName);
+        panelControl.add(textFieldLastName);
+        panelControl.add(textFieldCity);
+        panelControl.add(textFieldAge);
+
+        panelControl.setLayout(null);
+        panelControl.setVisible(true);
+
+        return panelControl;
+
     }
 
 }

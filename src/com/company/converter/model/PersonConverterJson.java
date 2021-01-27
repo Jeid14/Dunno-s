@@ -1,5 +1,6 @@
-package com.company.converterstr;
+package com.company.converter.model;
 
+import com.company.converter.IPersonConvertor;
 import com.company.model.Person;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

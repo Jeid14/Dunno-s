@@ -1,8 +1,7 @@
-package com.company.converterstr;
+package com.company.converter.model;
 
+import com.company.converter.IPersonConvertor;
 import com.company.model.Person;
-import com.company.utils.FileHelper;
-import com.company.utils.ScanerFileName;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
@@ -11,10 +10,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class PersonConvertToCSV implements IPersonConvertor {
     CsvMapper csvMapper = new CsvMapper();
