@@ -55,9 +55,8 @@ public class MainMenu {
         while (!command.equalsIgnoreCase(ConstantString.EXIT)) {
             switch (command.toLowerCase(Locale.ROOT)) {
                 case ConstantString.READ:
-
                     Table table = new Table();
-                    table.create(personList);
+                    //table.createTable(personList);
                 
                     fourCommand();
                     doThis(scanner.nextLine());

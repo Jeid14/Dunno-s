@@ -22,10 +22,11 @@ public class ControlPanel {
         labelFirstName.setBounds(10, 95, 150, 25);
         JLabel labelLastName = new JLabel(ConstantString.ENTER_LAST_NAME);
         labelLastName.setBounds(10, 165, 150, 25);
-        JLabel labelAge = new JLabel(ConstantString.ENTER_AGE);
-        labelAge.setBounds(10, 235, 150, 25);
         JLabel labelCity = new JLabel(ConstantString.ENTER_CITY);
-        labelCity.setBounds(10, 305, 150,25);
+        labelCity.setBounds(10, 235, 150, 25);
+        JLabel labelAge = new JLabel(ConstantString.ENTER_AGE);
+        labelAge.setBounds(10, 305, 150,25);
+
 
         JTextField textFieldId = new JTextField();
         textFieldId.setBounds(10, 50, 150, 25);
@@ -33,24 +34,23 @@ public class ControlPanel {
         textFieldFirstName.setBounds(10, 120, 150, 25);
         JTextField textFieldLastName = new JTextField();
         textFieldLastName.setBounds(10, 190, 150, 25);
-        JTextField textFieldAge = new JTextField();
-        textFieldAge.setBounds(10, 260, 150, 25);
         JTextField textFieldCity = new JTextField();
-        textFieldCity.setBounds(10, 330, 150, 25);
-
+        textFieldCity.setBounds(10, 260, 150, 25);
+        JTextField textFieldAge = new JTextField();
+        textFieldAge.setBounds(10, 330, 150, 25);
 
         panelControl.add(labelHead);
         panelControl.add(labelId);
         panelControl.add(labelFirstName);
         panelControl.add(labelLastName);
-        panelControl.add(labelAge);
         panelControl.add(labelCity);
+        panelControl.add(labelAge);
 
         panelControl.add(textFieldId);
         panelControl.add(textFieldFirstName);
         panelControl.add(textFieldLastName);
-        panelControl.add(textFieldAge);
         panelControl.add(textFieldCity);
+        panelControl.add(textFieldAge);
 
         panelControl.setLayout(null);
         panelControl.setVisible(true);

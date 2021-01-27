@@ -19,21 +19,17 @@ public class Buttons {
         panelHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelHeader.setOpaque(false);
 
-        buttonOpenFile = new JButton("Open File");
+        buttonOpenFile = new JButton(ConstantString.BUTTON_OPEN_FILE);
         buttonOpenFile.setBounds(10, 20, 100, 20);
 
-        buttonSelectionDB = new JButton("Database");
+        buttonSelectionDB = new JButton(ConstantString.BUTTON_DATABASE);
         buttonSelectionDB.setBounds(140, 20, 100, 20);
 
-       /*buttonClearAll = new JButton("Clear All");
-       buttonClearAll.setBounds(270, 20, 100, 20);*/
+        panelHeader.add(buttonOpenFile);
+        panelHeader.add(buttonSelectionDB);
 
-       //panelHeader.add(buttonClearAll);
-       panelHeader.add(buttonOpenFile);
-       panelHeader.add(buttonSelectionDB);
-
-       panelHeader.setLayout(null);
-       panelHeader.setVisible(true);
+        panelHeader.setLayout(null);
+        panelHeader.setVisible(true);
 
         return panelHeader;
     }
