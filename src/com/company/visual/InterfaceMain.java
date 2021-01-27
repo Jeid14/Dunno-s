@@ -1,13 +1,17 @@
 package com.company.visual;
 
+import com.company.executor.ExecutorFactory;
+import com.company.model.Person;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class InterfaceMain extends JFrame {
 
-    private JButton buttonOpenFile;
-    private JButton buttonSelectionDB;
-    private JButton buttonClearAll;
+    Buttons buttons = new Buttons();
+    Table table = new Table();
+    ControlPanel controlPanel = new ControlPanel();
 
     public void createGUI()
     {
@@ -15,21 +19,17 @@ public class InterfaceMain extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setPreferredSize(new Dimension(1000, 600));
-        frame.setSize(500,500);
+        frame.setSize(900,700);
         //frame.pack();//Эта команда подбирает оптимальный размер в зависимости от содержимого окна
 
-        buttonOpenFile = new JButton("Open File");
-        buttonOpenFile.setBounds(850, 50, 100, 30);
+        JPanel panelTable = new JPanel(new BorderLayout());
+        panelTable.setSize(600,580);
+        panelTable.setOpaque(false);
 
-        buttonSelectionDB = new JButton("Database");
-        buttonSelectionDB.setBounds(850, 100, 100, 30);
+        frame.add(buttons.createHeader());
+        frame.add(controlPanel.createControlPanel());
+        frame.add(buttons.createFooter());
 
-        buttonClearAll = new JButton("Clear All");
-        buttonClearAll.setBounds(150, 500, 100, 30);
-
-        frame.add(buttonOpenFile);
-        frame.add(buttonSelectionDB);
-        frame.add(buttonClearAll);
         frame.setLayout(null);
         frame.setVisible(true);
     }
