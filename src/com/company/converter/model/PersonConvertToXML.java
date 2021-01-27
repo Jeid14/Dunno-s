@@ -1,5 +1,6 @@
-package com.company.converterstr;
+package com.company.converter.model;
 
+import com.company.converter.IPersonConvertor;
 import com.company.model.Person;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

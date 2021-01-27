@@ -1,9 +1,9 @@
 package com.company.executor;
 
-import com.company.converterstr.PersonConvertToCSV;
-import com.company.converterstr.PersonConvertToXML;
-import com.company.converterstr.PersonConvertYaml;
-import com.company.converterstr.PersonConverterJson;
+import com.company.converter.model.PersonConvertToCSV;
+import com.company.converter.model.PersonConvertToXML;
+import com.company.converter.model.PersonConvertYaml;
+import com.company.converter.model.PersonConverterJson;
 import com.company.utils.Constants;
 
 public class ExecutorFactory {

@@ -57,7 +57,8 @@ public class MainMenu {
                 case ConstantString.READ:
 
                     Table table = new Table();
-                    table.create(personList);
+                    //table.createTable(personList);
+
                 
                     fourCommand();
                     doThis(scanner.nextLine());

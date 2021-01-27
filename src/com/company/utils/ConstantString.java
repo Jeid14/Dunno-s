@@ -28,10 +28,16 @@ public class ConstantString {
     public final static String SWITCH_COMMAND = "After the SWITCH command, the available commands and their format are displayed.!";
 
 
-    public static String ENTER_FIRST_NAME = "Enter First Name:";
-    public static String ENTER_LAST_NAME = "Enter  Last Name:";
-    public static String ENTER_CITY = "Enter City:";
-    public static String ENTER_ID = "Enter id:";
-    public static String ENTER_AGE = "Enter age:";
+    public static String ENTER_FIRST_NAME = "First Name:";
+    public static String ENTER_LAST_NAME = "Last Name:";
+    public static String ENTER_CITY = "City:";
+    public static String ENTER_ID = "Id:";
+    public static String ENTER_AGE = "Age:";
+
+
+    public static String HEAD_CONTROL_PANEL = "CONTROL PANEL";
+    public static String BUTTON_CLEAR_ALL = "Clear All";
+    public static String BUTTON_OPEN_FILE = "Open File";
+    public static String BUTTON_DATABASE = "Database";
 
 }

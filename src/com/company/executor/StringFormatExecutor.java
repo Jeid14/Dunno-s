@@ -1,6 +1,6 @@
 package com.company.executor;
 
-import com.company.converterstr.IPersonConvertor;
+import com.company.converter.IPersonConvertor;
 import com.company.model.Person;
 import com.company.utils.FileHelper;
 
