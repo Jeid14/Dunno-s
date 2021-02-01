@@ -1,26 +1,40 @@
 package com.company.visual;
 
+import com.company.Listeners.ButtonsListeners;
 import com.company.utils.ConstantString;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Buttons {
 
-    public JButton buttonOpenFile;
-    public JButton buttonSelectionDB;
-    public JButton buttonClearAll;
+    private JButton buttonOpenFile;
+    private JButton buttonSelectionDB;
+    private JButton buttonClearAll;
+    private JPanel panelHeader;
+    private JPanel panelFooter;
+    InterfaceMain interfaceMain;
+    ControlPanel controlPanel;
+    ActionListener actionListener;
 
+
+    Buttons( InterfaceMain interfaceMain, ControlPanel controlPanel){
+    this.interfaceMain = interfaceMain;
+    this.controlPanel = controlPanel;
+    }
 
    public JPanel createHeader(){
 
-        JPanel panelHeader = new JPanel(new BorderLayout());
+        panelHeader = new JPanel(new BorderLayout());
         panelHeader.setBounds(0,0,900,60);
         panelHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelHeader.setOpaque(false);
 
         buttonOpenFile = new JButton(ConstantString.BUTTON_OPEN_FILE);
         buttonOpenFile.setBounds(10, 20, 100, 20);
+        actionListener = new ButtonsListeners(interfaceMain.getFrame(), controlPanel.panelControl);
+        buttonOpenFile.addActionListener(actionListener);
 
         buttonSelectionDB = new JButton(ConstantString.BUTTON_DATABASE);
         buttonSelectionDB.setBounds(140, 20, 100, 20);
@@ -36,7 +50,7 @@ public class Buttons {
 
     public JPanel createFooter(){
 
-        JPanel panelFooter = new JPanel();
+        panelFooter = new JPanel();
         panelFooter.setLayout(new BoxLayout(panelFooter,BoxLayout.Y_AXIS));
         panelFooter.setBounds(0,440,900,60);
         panelFooter.setOpaque(false);
@@ -47,6 +61,18 @@ public class Buttons {
         panelFooter.add(buttonClearAll);
 
         panelFooter.setVisible(true);
+        return panelFooter;
+    }
+
+    public JButton getButtonOpenFile() {
+        return buttonOpenFile;
+    }
+
+    public JPanel getPanelHeader() {
+        return panelHeader;
+    }
+
+    public JPanel getPanelFooter() {
         return panelFooter;
     }
 }

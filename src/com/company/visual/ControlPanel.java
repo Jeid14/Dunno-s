@@ -7,10 +7,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ControlPanel {
+    JPanel panelControl;
+    JTextField textFieldId;
+    JTextField textFieldFirstName;
+    JTextField textFieldLastName;
+    JTextField textFieldCity;
+    JTextField textFieldAge;
+
 
     public JPanel createControlPanel(){
 
-        JPanel panelControl = new JPanel(new BorderLayout());
+        panelControl = new JPanel(new BorderLayout());
         panelControl.setBounds(700,60,300,580);
         panelControl.setOpaque(false);
 
@@ -29,15 +36,15 @@ public class ControlPanel {
         labelAge.setBounds(10, 305, 150,25);
 
 
-        JTextField textFieldId = new JTextField();
+        textFieldId = new JTextField();
         textFieldId.setBounds(10, 50, 150, 25);
-        JTextField textFieldFirstName = new JTextField();
+        textFieldFirstName = new JTextField();
         textFieldFirstName.setBounds(10, 120, 150, 25);
-        JTextField textFieldLastName = new JTextField();
+        textFieldLastName = new JTextField();
         textFieldLastName.setBounds(10, 190, 150, 25);
-        JTextField textFieldCity = new JTextField();
+        textFieldCity = new JTextField();
         textFieldCity.setBounds(10, 260, 150, 25);
-        JTextField textFieldAge = new JTextField();
+        textFieldAge = new JTextField();
         textFieldAge.setBounds(10, 330, 150, 25);
 
         panelControl.add(labelHead);
@@ -60,4 +67,51 @@ public class ControlPanel {
 
     }
 
+    public JPanel getPanelControl() {
+        return panelControl;
+    }
+
+    public JTextField getTextFieldId() {
+        return textFieldId;
+    }
+
+    public JTextField getTextFieldFirstName() {
+        return textFieldFirstName;
+    }
+
+    public JTextField getTextFieldLastName() {
+        return textFieldLastName;
+    }
+
+    public JTextField getTextFieldCity() {
+        return textFieldCity;
+    }
+
+    public JTextField getTextFieldAge() {
+        return textFieldAge;
+    }
+
+    public void setPanelControl(JPanel panelControl) {
+        this.panelControl = panelControl;
+    }
+
+    public void setTextFieldId(JTextField textFieldId) {
+        this.textFieldId = textFieldId;
+    }
+
+    public void setTextFieldFirstName(JTextField textFieldFirstName) {
+        this.textFieldFirstName = textFieldFirstName;
+    }
+
+    public void setTextFieldLastName(JTextField textFieldLastName) {
+        this.textFieldLastName = textFieldLastName;
+    }
+
+    public void setTextFieldCity(JTextField textFieldCity) {
+        this.textFieldCity = textFieldCity;
+    }
+
+    public void setTextFieldAge(JTextField textFieldAge) {
+        this.textFieldAge = textFieldAge;
+    }
 }
