@@ -3,22 +3,22 @@ package com.company.Listeners;
 import com.company.visual.ControlPanel;
 
 import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 public class TableListener implements MouseListener {
-    JTable table;
-    JPanel panelControl;
-    ControlPanel controlPanel;
+    private final JTable table;
+    private final ControlPanel controlPanel;
 
-    public TableListener(JTable table, JPanel panelControl) {
+    public TableListener(JTable table, ControlPanel controlPanel) {
         this.table = table;
-        this.panelControl = panelControl;
+        this.controlPanel = controlPanel;
     }
+
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (table.getSelectedRow() > -1) {
+       if (table.getSelectedRow() > -1) {
             controlPanel.getTextFieldId().setText(table.getValueAt(table.getSelectedRow(), 0).toString());
             controlPanel.getTextFieldFirstName().setText(table.getValueAt(table.getSelectedRow(), 1).toString());
             controlPanel.getTextFieldLastName().setText(table.getValueAt(table.getSelectedRow(), 2).toString());
@@ -47,4 +47,6 @@ public class TableListener implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
 }
+

@@ -2,12 +2,8 @@ package com.company.visual;
 
 
 import com.company.Listeners.TableListener;
-import com.company.executor.ExecutorFactory;
 import com.company.model.Person;
 import com.company.utils.ConstantString;
-import com.company.CRUD.Read;
-import com.company.executor.ExecutorFactory;
-import com.company.model.Person;
 
 
 import javax.swing.*;
@@ -15,19 +11,18 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-import java.util.*;
 import java.util.List;
-
-import java.time.Period;
-import java.util.*;
-
 
 
 public class Table {
 
     static JScrollPane scrollPane;
-    MouseListener mouseListener;
-    ControlPanel controlPanel = new ControlPanel();
+    private ControlPanel controlPanel;
+
+    public Table(ControlPanel controlPanel){
+
+        this.controlPanel = controlPanel;
+    }
 
 
     public JPanel createTable(List<Person> personList) throws IOException {
@@ -56,10 +51,13 @@ public class Table {
         scrollPane.setBounds(0, 0, 680, 360);
         panelTable.add(scrollPane);
 
-        mouseListener = new TableListener(table, controlPanel.getPanelControl());
+        MouseListener mouseListener = new TableListener(table, controlPanel);
         table.addMouseListener(mouseListener);
 
-        return panelTable;
+     return panelTable;
     }
+
+
+
 
 }
