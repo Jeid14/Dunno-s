@@ -9,6 +9,12 @@ import java.io.Serializable;
 
 public class Person implements Serializable {
 
+    private static final String CITY = "City" ;
+    private static final String ID = "ID";
+    private static final String FIRST_NAME = "First Name";
+    private static final String LAST_NAME = "Last Name";
+    private static final String AGE = "Age";
+
     private int id;
     private String firstName;
     private String lastName;
@@ -68,17 +74,15 @@ public class Person implements Serializable {
         return city;
     }
 
+
     @Override
     public String toString() {
         return "" +
                 "id=" + id +
-                " firstName='" + firstName + '\'' +
-                " lastName='" + lastName + '\'' +
-                " age=" + age +
-                " city='" + city + '\'' +
-                +
-                '\n';
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", city='" + city + '\'' +
+                "\n";
     }
-
-
 }

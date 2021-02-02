@@ -1,6 +1,4 @@
 package com.company.converter.model;
-
-
 import com.company.Listeners.ButtonsListeners;
 import com.company.converter.IPersonConvertor;
 
@@ -35,4 +33,5 @@ public class PersonConvertYaml implements IPersonConvertor {
 
         return mapper.readValue(new File(ButtonsListeners.fileEx), new TypeReference<List<Person>>() {
         }
+
 }

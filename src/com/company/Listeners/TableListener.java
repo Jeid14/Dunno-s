@@ -1,20 +1,17 @@
 package com.company.Listeners;
-
 import com.company.visual.ControlPanel;
-
 import javax.swing.*;
 import java.awt.event.*;
 
 public class TableListener implements MouseListener {
     private final JTable table;
+
     private final ControlPanel controlPanel;
 
     public TableListener(JTable table, ControlPanel controlPanel) {
         this.table = table;
         this.controlPanel = controlPanel;
     }
-
-
 
     @Override
     public void mouseClicked(MouseEvent e) {

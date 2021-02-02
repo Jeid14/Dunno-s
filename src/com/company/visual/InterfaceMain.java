@@ -1,13 +1,9 @@
 package com.company.visual;
 
-
-
 import com.company.Listeners.ButtonsListeners;
 import com.company.Listeners.TableListener;
 import com.company.executor.ExecutorFactory;
 import com.company.model.Person;
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -25,6 +21,7 @@ public class InterfaceMain extends JFrame{
     JTextField textFieldLastName= new JTextField();
     JTextField textFieldAge= new JTextField();
     JTextField textFieldCity= new JTextField();
+
     ControlPanel controlPanel = new ControlPanel(textFieldId ,textFieldFirstName, textFieldLastName, textFieldAge, textFieldCity);
     Buttons buttons = new Buttons(frame, controlPanel);
 
@@ -37,6 +34,7 @@ public class InterfaceMain extends JFrame{
         frame.add(buttons.createHeader());
         frame.add(controlPanel.createControlPanel());
         frame.add(buttons.createFooter());
+
         ButtonsListeners buttonsListeners = new ButtonsListeners(buttons.panelHeader, frame, controlPanel);
 
         frame.setLayout(null);

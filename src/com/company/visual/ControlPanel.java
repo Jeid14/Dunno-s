@@ -6,7 +6,6 @@ import javax.swing.*;
 
 import java.awt.*;
 
-
 public class ControlPanel extends JPanel {
     private JTextField textFieldId;
     private JTextField textFieldFirstName;
@@ -23,8 +22,6 @@ public class ControlPanel extends JPanel {
           this.textFieldCity = textFieldCity;
 
     }
-
-    public JPanel createControlPanel(){
 
           panelControl = new JPanel(new BorderLayout());
           panelControl.setBounds(700, 60, 300, 700);
