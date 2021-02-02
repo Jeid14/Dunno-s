@@ -1,7 +1,7 @@
 package com.company.converter.model;
-
+import com.company.Listeners.ButtonsListeners;
 import com.company.converter.IPersonConvertor;
-import com.company.utils.ScanerFileName;
+
 import com.company.model.Person;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,7 +30,8 @@ public class PersonConvertYaml implements IPersonConvertor {
     @Override
     public List<Person> convertStrToPerson(String personStr) throws IOException {
 
-        return mapper.readValue(new File(ScanerFileName.getInputFileName()), new TypeReference<List<Person>>() {
-        });
-    }
+
+        return mapper.readValue(new File(ButtonsListeners.fileEx), new TypeReference<List<Person>>() {
+        }
+
 }

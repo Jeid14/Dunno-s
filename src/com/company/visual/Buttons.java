@@ -1,21 +1,35 @@
 package com.company.visual;
-
+import com.company.Listeners.ButtonsListeners;
 import com.company.utils.ConstantString;
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Buttons {
 
     public JButton buttonOpenFile;
     public JButton buttonSelectionDB;
     public JButton buttonClearAll;
+    JPanel panelHeader;
+    JFrame frame;
+    public Buttons(JFrame frame){
+        this.frame = frame;
+    }
+
+    JPanel panelHeader;
+    JFrame frame;
+    private JPanel controlPanel;
+
+    public Buttons(JFrame frame, JPanel controlPanel){
+        this.frame = frame;
+        this.controlPanel = controlPanel;
+    }
 
 
-   public JPanel createHeader(){
+    public JPanel createHeader() {
 
-        JPanel panelHeader = new JPanel(new BorderLayout());
-        panelHeader.setBounds(0,0,900,60);
+        panelHeader = new JPanel(new BorderLayout());
+        panelHeader.setBounds(0, 0, 900, 60);
         panelHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelHeader.setOpaque(false);
 
@@ -24,6 +38,12 @@ public class Buttons {
 
         buttonSelectionDB = new JButton(ConstantString.BUTTON_DATABASE);
         buttonSelectionDB.setBounds(140, 20, 100, 20);
+        ActionListener actionListener = new ButtonsListeners(panelHeader,frame);
+        buttonOpenFile.addActionListener(actionListener);
+
+        ActionListener actionListener = new ButtonsListeners(panelHeader,frame, (ControlPanel) controlPanel);
+        buttonOpenFile.addActionListener(actionListener);
+
 
         panelHeader.add(buttonOpenFile);
         panelHeader.add(buttonSelectionDB);
@@ -34,11 +54,11 @@ public class Buttons {
         return panelHeader;
     }
 
-    public JPanel createFooter(){
+    public JPanel createFooter() {
 
         JPanel panelFooter = new JPanel();
-        panelFooter.setLayout(new BoxLayout(panelFooter,BoxLayout.Y_AXIS));
-        panelFooter.setBounds(0,440,900,60);
+        panelFooter.setLayout(new BoxLayout(panelFooter, BoxLayout.Y_AXIS));
+        panelFooter.setBounds(0, 440, 500, 60);
         panelFooter.setOpaque(false);
 
         buttonClearAll = new JButton(ConstantString.BUTTON_CLEAR_ALL);
@@ -49,4 +69,5 @@ public class Buttons {
         panelFooter.setVisible(true);
         return panelFooter;
     }
+
 }
