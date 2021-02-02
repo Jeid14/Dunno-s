@@ -1,17 +1,9 @@
 package com.company.visual;
-
 import com.company.Listeners.ButtonsListeners;
-import com.company.executor.ExecutorFactory;
-import com.company.model.Person;
 import com.company.utils.ConstantString;
-
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.List;
 
 public class Buttons {
 
@@ -22,6 +14,15 @@ public class Buttons {
     JFrame frame;
     public Buttons(JFrame frame){
         this.frame = frame;
+    }
+
+    JPanel panelHeader;
+    JFrame frame;
+    private JPanel controlPanel;
+
+    public Buttons(JFrame frame, JPanel controlPanel){
+        this.frame = frame;
+        this.controlPanel = controlPanel;
     }
 
 
@@ -40,6 +41,10 @@ public class Buttons {
         ActionListener actionListener = new ButtonsListeners(panelHeader,frame);
         buttonOpenFile.addActionListener(actionListener);
 
+        ActionListener actionListener = new ButtonsListeners(panelHeader,frame, (ControlPanel) controlPanel);
+        buttonOpenFile.addActionListener(actionListener);
+
+
         panelHeader.add(buttonOpenFile);
         panelHeader.add(buttonSelectionDB);
 
@@ -53,7 +58,7 @@ public class Buttons {
 
         JPanel panelFooter = new JPanel();
         panelFooter.setLayout(new BoxLayout(panelFooter, BoxLayout.Y_AXIS));
-        panelFooter.setBounds(0, 440, 900, 60);
+        panelFooter.setBounds(0, 440, 500, 60);
         panelFooter.setOpaque(false);
 
         buttonClearAll = new JButton(ConstantString.BUTTON_CLEAR_ALL);
@@ -64,6 +69,5 @@ public class Buttons {
         panelFooter.setVisible(true);
         return panelFooter;
     }
-
 
 }

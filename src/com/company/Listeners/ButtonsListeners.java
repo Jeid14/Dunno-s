@@ -2,6 +2,7 @@ package com.company.Listeners;
 
 import com.company.executor.ExecutorFactory;
 import com.company.model.Person;
+import com.company.visual.ControlPanel;
 import com.company.visual.Table;
 
 
@@ -13,23 +14,24 @@ import java.util.List;
 
 public class ButtonsListeners implements ActionListener {
     private  String path;
-    private List<Person> personList;
     public static String fileEx;
     private final JFrame frame;
+    private final JPanel panelHeader;
+    private ControlPanel controlPanel;
 
-    public ButtonsListeners(JPanel panelHeader,JFrame frame) {
+    public ButtonsListeners(JPanel panelHeader,JFrame frame, ControlPanel controlPanel) {
         this.panelHeader = panelHeader;
         this.frame = frame;
-    }
+        this.controlPanel = controlPanel;
 
-    private final JPanel panelHeader;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showDialog(panelHeader, "Open");
         path = fileChooser.getSelectedFile().getAbsolutePath();
-        Table table = new Table();
+        Table table = new Table(controlPanel);
         try {
             frame.add(table.createTable(getPersonList()));
         } catch (IOException ioException) {
