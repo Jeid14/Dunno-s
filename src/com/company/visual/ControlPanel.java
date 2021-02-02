@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
+
 public class ControlPanel extends JPanel {
     private JTextField textFieldId;
     private JTextField textFieldFirstName;
@@ -101,29 +102,6 @@ public class ControlPanel extends JPanel {
     public JPanel getPanelControl() {
         return panelControl;
     }
-/*   public void setTextFieldId(JTextField textFieldId) {
-        this.textFieldId = textFieldId;
-    }*/
 
-   /* public void setTextFieldFirstName(JTextField textFieldFirstName) {
-        this.textFieldFirstName = textFieldFirstName;
-    }
-
-    public void setTextFieldLastName(JTextField textFieldLastName) {
-        this.textFieldLastName = textFieldLastName;
-
-    }
-
-    public void setTextFieldAge(JTextField textFieldAge) {
-        this.textFieldAge = textFieldAge;
-    }
-
-    public void setTextFieldCity(JTextField textFieldCity) {
-        this.textFieldCity = textFieldCity;
-    }
-*/
-    //для передачи текстовых полей в другой класс нужно создать геттеры.
-    //в таблице передавать саму таблицу и контрольную панель.
-    // а в листенере таблицы вызавать контрольную панель с геттерами для установления новых значений.
 
 }
