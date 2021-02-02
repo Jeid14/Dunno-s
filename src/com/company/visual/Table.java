@@ -1,39 +1,20 @@
 package com.company.visual;
 
+
 import com.company.Listeners.TableListener;
 import com.company.model.Person;
 import com.company.utils.ConstantString;
+
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-
 import java.util.List;
 
 
 public class Table {
-    private JTextField textFieldId;
-    private JTextField textFieldFirstName;
-    private JTextField textFieldLastName;
-    private JTextField textFieldAge;
-    private JTextField textFieldCity;
-
-    JFrame frame ;
-
-
-    public Table(JTextField textFieldId, JTextField textFieldFirstName, JTextField textFieldCity, JTextField textFieldAge, JTextField textFieldLastName,JFrame frame) {
-        this.textFieldId = textFieldId;
-        this.textFieldFirstName = textFieldFirstName;
-        this.textFieldLastName = textFieldLastName;
-        this.textFieldCity = textFieldCity;
-        this.textFieldAge = textFieldAge;
-        this.frame = frame;
-
-    }
-    public Table(){
-
-    }
 
     static JScrollPane scrollPane;
     private ControlPanel controlPanel;
@@ -49,15 +30,15 @@ public class Table {
         JPanel panelTable = new JPanel();
         panelTable.setLayout(new BoxLayout(panelTable, BoxLayout.Y_AXIS));
         panelTable.setBounds(10, 70, 680, 360);
-
         panelTable.setOpaque(false);
 
-            for (Person p : personList) {
-                model.addRow(new String[]{String.valueOf(p.getId()), p.getFirstName(), p.getLastName(), p.getCity(), String.valueOf(p.getAge())});
-            }
-            MouseListener mouseListener = new TableListener(table, textFieldId, textFieldFirstName, textFieldCity, textFieldAge, textFieldLastName);
-            table.addMouseListener(mouseListener);
-
+        DefaultTableModel model = new DefaultTableModel();
+        JTable table = new JTable(model);
+        model.addColumn(ConstantString.ENTER_ID);
+        model.addColumn(ConstantString.ENTER_FIRST_NAME);
+        model.addColumn(ConstantString.ENTER_LAST_NAME);
+        model.addColumn(ConstantString.ENTER_CITY);
+        model.addColumn(ConstantString.ENTER_AGE);
 
         for (Person p : personList) {
             model.addRow(new String[]{String.valueOf(p.getId()), p.getFirstName(), p.getLastName(), p.getCity(), String.valueOf(p.getAge())});
@@ -74,7 +55,6 @@ public class Table {
         table.addMouseListener(mouseListener);
 
      return panelTable;
-
     }
 
 

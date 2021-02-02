@@ -1,6 +1,9 @@
 package com.company.visual;
+
 import com.company.Listeners.ButtonsListeners;
 import com.company.utils.ConstantString;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -10,12 +13,6 @@ public class Buttons {
     public JButton buttonOpenFile;
     public JButton buttonSelectionDB;
     public JButton buttonClearAll;
-    JPanel panelHeader;
-    JFrame frame;
-    public Buttons(JFrame frame){
-        this.frame = frame;
-    }
-
     JPanel panelHeader;
     JFrame frame;
     private JPanel controlPanel;
@@ -38,12 +35,8 @@ public class Buttons {
 
         buttonSelectionDB = new JButton(ConstantString.BUTTON_DATABASE);
         buttonSelectionDB.setBounds(140, 20, 100, 20);
-        ActionListener actionListener = new ButtonsListeners(panelHeader,frame);
-        buttonOpenFile.addActionListener(actionListener);
-
         ActionListener actionListener = new ButtonsListeners(panelHeader,frame, (ControlPanel) controlPanel);
         buttonOpenFile.addActionListener(actionListener);
-
 
         panelHeader.add(buttonOpenFile);
         panelHeader.add(buttonSelectionDB);
@@ -69,5 +62,6 @@ public class Buttons {
         panelFooter.setVisible(true);
         return panelFooter;
     }
+
 
 }
