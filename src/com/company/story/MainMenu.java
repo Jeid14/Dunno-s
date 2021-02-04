@@ -136,22 +136,12 @@
 //        System.out.println("Enter command!");
 //    }
 //
-//    public void saveChange() throws IOException {
-//        new ExecutorFactory().getInstanceByFormat(fileExtension).write(fileName, newPersons);
-//        System.out.println("Changed saved!");
+//
 //
 //
 //    }
 //
-//    public void isEmpty(String inputFileName) throws IOException {
-//        File yourFile = new File(inputFileName);
-//        if (yourFile.length() == 0) {
-//            Person person = new Person(0, " ", " ", 0, " ");
-//            List<Person> personList = new ArrayList<>();
-//            personList.add(person);
-//            FileHelper fileHelper = new FileHelper();
-//            new ExecutorFactory().getInstanceByFormat(getFileExtension()).write(getInputFileName(), personList);
-//        }
+//
 //
 //    }
 //

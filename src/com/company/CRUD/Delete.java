@@ -2,19 +2,19 @@ package com.company.CRUD;
 
 import com.company.model.Person;
 import com.company.utils.ConstantString;
+import com.company.utils.FileHelper;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Delete {
-    Scanner scanner = new Scanner(System.in);
-
-    public List<Person> deleteOnePerson(List<Person> personList) throws IOException {
+    public void deleteOnePerson(List<Person> personList, JTextField textFieldId) throws IOException {
         int count = 0;
         Person personForDelete = new Person();
-        System.out.println(ConstantString.ENTER_ID);
-        int id = scanner.nextInt();
+        int id = Integer.parseInt(textFieldId.getText());
 
         for (Person p : personList) {
             if (p.getId() == id) {
@@ -25,13 +25,13 @@ public class Delete {
 
         }
         if (count == 0) {
-            System.out.println("Person not found!");
+            textFieldId.setText("Персона не найдена");
 
 
         }
-        personList.remove(personForDelete);
+         personList.remove(personForDelete);
 
-
-        return personList;
+        FileHelper fileHelper = new FileHelper();
+        fileHelper.saveChange(personList);
     }
 }

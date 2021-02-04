@@ -4,6 +4,7 @@ import com.company.converter.IPersonConvertor;
 
 import com.company.model.Person;
 
+import com.company.utils.FileHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +32,8 @@ public class PersonConvertYaml implements IPersonConvertor {
     public List<Person> convertStrToPerson(String personStr) throws IOException {
 
 
-        return mapper.readValue(new File(ButtonsListeners.fileEx), new TypeReference<List<Person>>() {
-        }
+        return mapper.readValue(new File(new FileHelper().getFileExtension()), new TypeReference<List<Person>>() {
+        });
 
+    }
 }

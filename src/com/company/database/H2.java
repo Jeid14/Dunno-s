@@ -2,47 +2,32 @@ package com.company.database;
 
 import com.company.model.Person;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class H2 extends ConnectionToDataBase {
-    public final static String url = "jdbc:h2:tcp://localhost/~/test";
-    public static final String user = "H2";
-    public static final String password = "1111";
+    public static String url = "jdbc:h2:tcp://localhost/~/test";
+    public static String user = "H2";
+    public static String password = "1111";
+    public  Connection connection ;
 
-    @Override
-    public Connection getConnection(String url, String password, String userName) {
+    public Connection getConnection(String url, String user, String password) {
         try {
-            Class.forName("org.h2.Driver");
-            return super.getConnection(url, password, userName);
-        } catch (ClassNotFoundException e) {
-            System.out.println("fuck");
-        }
-        return null;
-
-    }
-
-    public List getList(Connection connection) {
-        List<Person> personList = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("SELECT*FROM personList")) {
-            final ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Person person = new Person(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(5), resultSet.getString(4));
-                personList.add(person);
-            }
+            connection = DriverManager.getConnection(url,user,password);
+            return connection;
         } catch (SQLException throwables) {
-            personList.add(new Person(0, " ", " ", 0, " "));
+            System.out.println("DATA problem");
             throwables.printStackTrace();
+
         }
-        ;
-        return personList;
+        return connection;
+
     }
 
     public void saveUpdateList(List<Person> personList, Connection connection) {
+        connection = getConnection(url,user,password);
+
         try {
             PreparedStatement statement = connection.prepareStatement("DROP TABLE personList");
             try {
@@ -59,6 +44,7 @@ public class H2 extends ConnectionToDataBase {
             try {
                 ResultSet set = statement.executeQuery();
             } catch (SQLException e) {
+                System.out.println(4);
 
             }
         } catch (SQLException throwables) {
@@ -71,17 +57,21 @@ public class H2 extends ConnectionToDataBase {
                 String ln = person.getLastName();
                 String ci = person.getCity();
                 int age = person.getAge();
-                PreparedStatement statement = connection.prepareStatement(String.format("INSERT INTO personList(id,FirstName,LastName,City,age) VALUES (%s,'%s','%s','%s',%s);", id, fn, ln, ci, age));
+                PreparedStatement statement = connection.prepareStatement(String.format("INSERT INTO PERSONLIST VALUES (%s,'%s','%s','%s',%s);", id, fn, ln, ci, age));
                 try {
                     ResultSet resultSet = statement.executeQuery();
                 } catch (SQLException e) {
-
+                    System.out.println(5);
                 }
             }
         } catch (SQLException throwables) {
             System.out.println("Not Corect SQL query");
             throwables.printStackTrace();
         }
+    }
 
+    @Override
+    public List getList(Connection connection) {
+        return super.getList(connection);
     }
 }
