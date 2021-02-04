@@ -19,6 +19,7 @@ public class StringFormatExecutor implements Executable {
     @Override
     public void write(String fileName, List<Person> personList) throws IOException {
         fileHelper.saveToFile(convertor.convertPersonToStr(personList), fileName);
+
     }
 
     @Override

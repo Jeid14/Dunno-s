@@ -1,39 +1,42 @@
 package com.company.visual;
 
 
+import com.company.Listeners.ButtonsListeners;
 import com.company.Listeners.TableListener;
 import com.company.model.Person;
 import com.company.utils.ConstantString;
+import com.company.utils.FileHelper;
 
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Table {
+    private final FileHelper fileHelper;
+    private final JFrame frame;
+    JScrollPane scrollPane;
 
-    static JScrollPane scrollPane;
-    private ControlPanel controlPanel;
+    TextFilds textFilds;
 
-    public Table(ControlPanel controlPanel){
+    public Table(JFrame frame, TextFilds textFilds, FileHelper fileHelper) {
+        this.frame = frame;
+        this.textFilds = textFilds;
+        this.fileHelper = fileHelper;
 
-        this.controlPanel = controlPanel;
     }
 
+    public void createTable(List<Person> personList) throws IOException {
 
-    public JPanel createTable(List<Person> personList) throws IOException {
-
-        JPanel panelTable = new JPanel();
-        panelTable.setLayout(new BoxLayout(panelTable, BoxLayout.Y_AXIS));
-        panelTable.setBounds(10, 70, 680, 360);
-        panelTable.setOpaque(false);
 
         DefaultTableModel model = new DefaultTableModel();
-        JTable table = new JTable(model);
+
         model.addColumn(ConstantString.ENTER_ID);
         model.addColumn(ConstantString.ENTER_FIRST_NAME);
         model.addColumn(ConstantString.ENTER_LAST_NAME);
@@ -43,21 +46,41 @@ public class Table {
         for (Person p : personList) {
             model.addRow(new String[]{String.valueOf(p.getId()), p.getFirstName(), p.getLastName(), p.getCity(), String.valueOf(p.getAge())});
         }
+        JTable jtable = new JTable(model);
+        jtable.setFillsViewportHeight(true);
 
-        table.setFillsViewportHeight(true);
-        scrollPane = new JScrollPane(table,
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(0, 0, 680, 360);
-        panelTable.add(scrollPane);
+        jtable.getColumnModel().getColumn(0).setPreferredWidth(2);
+        jtable.getColumnModel().getColumn(4).setPreferredWidth(2);
+        jtable.getColumnModel().getColumn(3).setPreferredWidth(15);
 
-        MouseListener mouseListener = new TableListener(table, controlPanel);
-        table.addMouseListener(mouseListener);
 
-     return panelTable;
+        MouseListener listener = new TableListener(jtable, textFilds);
+        jtable.addMouseListener(listener);
+
+        scrollPane = createScrollPane(jtable);
+        frame.add(scrollPane);
+
     }
 
 
+    public void redrawTable() throws IOException {
+        frame.remove(this.scrollPane);
+        if (ButtonsListeners.path != null) {
+            fileHelper.isEmpty();
+        }
+        createTable(fileHelper.getPersonList());
 
 
+    }
+
+    public JScrollPane createScrollPane(JTable defaultTable) {
+        scrollPane = new JScrollPane(defaultTable,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        this.scrollPane.setBounds(30, 35, 450, 300);
+        return scrollPane;
+    }
 }
+
+
+

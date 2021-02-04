@@ -1,9 +1,9 @@
 package com.company.Listeners;
 
-import com.company.executor.ExecutorFactory;
 import com.company.model.Person;
-import com.company.visual.ControlPanel;
+import com.company.utils.FileHelper;
 import com.company.visual.Table;
+import com.company.visual.TextFilds;
 
 
 import javax.swing.*;
@@ -13,45 +13,58 @@ import java.io.IOException;
 import java.util.List;
 
 public class ButtonsListeners implements ActionListener {
-    private  String path;
-    public static String fileEx;
+    public static String path;
     private final JFrame frame;
-    private final JPanel panelHeader;
-    private ControlPanel controlPanel;
+    private final TextFilds textFilds;
+    private final FileHelper fileHelper;
+    private static Table table;
+    static int countOpen = 0;
 
-    public ButtonsListeners(JPanel panelHeader,JFrame frame, ControlPanel controlPanel) {
-        this.panelHeader = panelHeader;
+
+    public ButtonsListeners(JFrame frame, TextFilds textFilds, FileHelper fileHelper) {
+
         this.frame = frame;
-        this.controlPanel = controlPanel;
+        this.textFilds = textFilds;
+        this.fileHelper = fileHelper;
 
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.showDialog(panelHeader, "Open");
+        fileChooser.showDialog(frame, "Open");
         path = fileChooser.getSelectedFile().getAbsolutePath();
-        Table table = new Table(controlPanel);
         try {
-            frame.add(table.createTable(getPersonList()));
+            if (countOpen == 0) {
+                table = new Table(frame, textFilds, fileHelper);
+                setTable(table);
+                fileHelper.isEmpty();
+                table.createTable(fileHelper.getPersonList());
+                countOpen++;
+                System.out.println(countOpen);
+            } else if (countOpen > 0) {
+                table.redrawTable();
+            }
+
+            textFilds.getTextFildId().setText("");
+            textFilds.getTextFieldAge().setText("");
+            textFilds.getTextFieldCity().setText("");
+            textFilds.getTextFieldFirstName().setText("");
+            textFilds.getTextFieldLastName().setText("");
+
+
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-
     }
 
-    public  List<Person> getPersonList() throws IOException {
-        return new ExecutorFactory().getInstanceByFormat(getFileExtension()).read(path);
+    public static Table getTable() {
+        return table;
     }
 
-    public  String getFileExtension() {
-        // если в имени файла есть точка и она не является первым символом в названии файла
-        if (path.lastIndexOf(".") != -1 && path.lastIndexOf(".") != 0) {
-            // то вырезаем все знаки после последней точки в названии файла, то есть ХХХХХ.txt -> txt
-            fileEx = path.substring(path.lastIndexOf(".") + 1);
-            return path.substring(path.lastIndexOf(".") + 1);
-        }            // в противном случае возвращаем заглушку, то есть расширение не найдено
-        else return " ";
+    public static void setTable(Table jtable) {
+        table = jtable;
     }
 
 

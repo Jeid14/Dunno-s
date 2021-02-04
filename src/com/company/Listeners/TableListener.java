@@ -1,26 +1,32 @@
 package com.company.Listeners;
-import com.company.visual.ControlPanel;
+import com.company.visual.InterfaceMain;
+import com.company.visual.Table;
+import com.company.visual.TextFilds;
+
 import javax.swing.*;
 import java.awt.event.*;
 
 public class TableListener implements MouseListener {
-    private final JTable table;
+    private  JTable table;
+    TextFilds textFilds;
 
-    private final ControlPanel controlPanel;
 
-    public TableListener(JTable table, ControlPanel controlPanel) {
+
+    public TableListener(JTable table, TextFilds textFilds) {
         this.table = table;
-        this.controlPanel = controlPanel;
+        this.textFilds = textFilds;
+
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
        if (table.getSelectedRow() > -1) {
-            controlPanel.getTextFieldId().setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-            controlPanel.getTextFieldFirstName().setText(table.getValueAt(table.getSelectedRow(), 1).toString());
-            controlPanel.getTextFieldLastName().setText(table.getValueAt(table.getSelectedRow(), 2).toString());
-            controlPanel.getTextFieldCity().setText(table.getValueAt(table.getSelectedRow(), 3).toString());
-            controlPanel.getTextFieldAge().setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+            textFilds.getTextFildId().setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+            textFilds.getTextFieldFirstName().setText(table.getValueAt(table.getSelectedRow(), 1).toString());
+            textFilds.getTextFieldLastName().setText(table.getValueAt(table.getSelectedRow(), 2).toString());
+            textFilds.getTextFieldCity().setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+            textFilds.getTextFieldAge().setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+
         }
 
     }
