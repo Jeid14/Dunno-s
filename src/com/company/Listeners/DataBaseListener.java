@@ -57,6 +57,10 @@ public class DataBaseListener implements ActionListener {
                 ConnectionNoSql graphQl = new GraphQl();
                 createTableFromNonSql(graphQl);
                 break;
+            case "NonSQL - Mongo":
+                DB = "Mongo";
+                ConnectionNoSql mongo = new Mongo();
+                createTableFromNonSql(mongo);
         }
 
     }

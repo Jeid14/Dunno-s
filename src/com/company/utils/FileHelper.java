@@ -72,6 +72,12 @@ public class FileHelper {
                 ConnectionNoSql graph = new GraphQl();
                 graph.saveUpdateListNonSql(personList);
             }
+
+            if(DataBaseListener.DB.equals("Mongo")){
+                ConnectionNoSql mongo = new Mongo();
+                mongo.saveUpdateListNonSql(personList);
+            }
+
         } else {
             new ExecutorFactory().getInstanceByFormat(getFileExtension()).write(ButtonsListeners.path, personList);
             System.out.println("Changed saved!");
