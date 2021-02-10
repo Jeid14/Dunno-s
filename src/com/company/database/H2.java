@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class H2 extends ConnectionToDataBase {
+public class H2 extends ConnectionToDataBase{
     public static String url = "jdbc:h2:tcp://localhost/~/test";
     public static String user = "H2";
     public static String password = "1111";
@@ -29,10 +29,11 @@ public class H2 extends ConnectionToDataBase {
         connection = getConnection(url,user,password);
 
         try {
-            PreparedStatement statement = connection.prepareStatement("DROP TABLE personList");
+            PreparedStatement statement = connection.prepareStatement("DROP TABLE PERSONLIST");
             try {
-                ResultSet set = statement.executeQuery();
+                int set = statement.executeUpdate();
             } catch (SQLException e) {
+                e.printStackTrace();
 
             }
         } catch (SQLException throwables) {
@@ -40,11 +41,11 @@ public class H2 extends ConnectionToDataBase {
         }
         try {
 
-            PreparedStatement statement = connection.prepareStatement("CREATE TABLE personList( id INTEGER UNIQUE, FirstName VARCHAR NOT NULL, LastName VARCHAR NOT NULL, City VARCHAR NOT NULL, age INTEGER);");
+            PreparedStatement statement = connection.prepareStatement("CREATE TABLE PERSONLIST( id INTEGER UNIQUE, FirstName VARCHAR NOT NULL, LastName VARCHAR NOT NULL, City VARCHAR NOT NULL, age INTEGER)");
             try {
-                ResultSet set = statement.executeQuery();
+                int set = statement.executeUpdate();
             } catch (SQLException e) {
-                System.out.println(4);
+
 
             }
         } catch (SQLException throwables) {
@@ -57,11 +58,12 @@ public class H2 extends ConnectionToDataBase {
                 String ln = person.getLastName();
                 String ci = person.getCity();
                 int age = person.getAge();
-                PreparedStatement statement = connection.prepareStatement(String.format("INSERT INTO PERSONLIST VALUES (%s,'%s','%s','%s',%s);", id, fn, ln, ci, age));
+
+                PreparedStatement statement = connection.prepareStatement(String.format("INSERT INTO PERSONLIST VALUES (%s,'%s','%s','%s',%s)", id, fn, ln, ci, age));
                 try {
-                    ResultSet resultSet = statement.executeQuery();
+                    int resultSet = statement.executeUpdate();
                 } catch (SQLException e) {
-                    System.out.println(5);
+
                 }
             }
         } catch (SQLException throwables) {

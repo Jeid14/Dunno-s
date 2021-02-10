@@ -2,9 +2,7 @@ package com.company.utils;
 
 import com.company.Listeners.ButtonsListeners;
 import com.company.Listeners.DataBaseListener;
-import com.company.database.ConnectionToDataBase;
-import com.company.database.H2;
-import com.company.database.Postgres;
+import com.company.database.*;
 import com.company.executor.ExecutorFactory;
 import com.company.model.Person;
 
@@ -15,7 +13,6 @@ import java.util.List;
 public class FileHelper {
     //   final String path = ButtonsListeners.path;
     List<Person> personList;
-    String DB = DataBaseListener.DB;
 
 
     public void saveToFile(String content, String fileName) throws IOException {
@@ -59,13 +56,21 @@ public class FileHelper {
     public void saveChange(List<Person> personList) throws IOException {
         if (ButtonsListeners.path == null) {
 
-            if (DB.equals("postgres")) {
+            if (DataBaseListener.DB.equals("Postgres")) {
                 ConnectionToDataBase postgres = new Postgres();
-                postgres.saveUpdateList(personList, postgres.getConnection(Postgres.url,Postgres.password,Postgres.user));
+                postgres.saveUpdateList(personList, postgres.getConnection(Postgres.url, Postgres.user, Postgres.password));
             }
-            if(DB.equals("H2")){
-               ConnectionToDataBase h2 = new H2();
-                h2.saveUpdateList(personList,h2.getConnection(H2.url,H2.password,H2.user));
+            if (DataBaseListener.DB.equals("H2")) {
+                ConnectionToDataBase connection = new H2();
+                connection.saveUpdateList(personList, connection.getConnection(H2.url, H2.user, H2.password));
+            }
+            if(DataBaseListener.DB.equals("MySql")){
+                ConnectionToDataBase mySql = new MySql();
+                mySql.saveUpdateList(personList,mySql.getConnection(MySql.url,MySql.user,MySql.password));
+            }
+            if(DataBaseListener.DB.equals("Graph")){
+                ConnectionNoSql graph = new GraphQl();
+                graph.saveUpdateListNonSql(personList);
             }
         } else {
             new ExecutorFactory().getInstanceByFormat(getFileExtension()).write(ButtonsListeners.path, personList);

@@ -3,6 +3,7 @@ package com.company.Listeners;
 import com.company.utils.FileHelper;
 import com.company.visual.InterfaceMain;
 import com.company.visual.Table;
+import com.company.visual.TextFilds;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,11 +14,13 @@ import java.util.ArrayList;
 
 public class ClearAllLiestener implements ActionListener {
     private final JFrame frame;
-    FileHelper fileHelper = new FileHelper();
+    FileHelper fileHelper;
     Table table;
+    TextFilds textFilds;
 
 
-    public ClearAllLiestener(JFrame frame) {
+    public ClearAllLiestener(JFrame frame,FileHelper fileHelper) {
+        this.fileHelper = fileHelper;
         this.frame = frame;
     }
 

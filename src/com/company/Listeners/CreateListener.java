@@ -6,6 +6,7 @@ import com.company.utils.FileHelper;
 import com.company.visual.InterfaceMain;
 import com.company.visual.Table;
 import com.company.visual.TextFilds;
+import org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,32 +32,19 @@ public class CreateListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (ButtonsListeners.path == null) {
-            createFotDataBase();
+            create();
         } else {
-            createForFile();
+            try {
+                fileHelper.isEmpty();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            create();
         }
     }
 
-    public void createForFile() {
-        try {
-            Create create = new Create();
-            fileHelper.isEmpty();
-            create.createPerson(fileHelper.getPersonList(), textFilds.getTextFildId(), textFilds.getTextFieldFirstName(), textFilds.getTextFieldLastName(), textFilds.getTextFieldAge(), textFilds.getTextFieldCity());
-            Table table = ButtonsListeners.getTable();
-            table.redrawTable();
-            textFilds.getTextFildId().setText("");
-            textFilds.getTextFieldAge().setText("");
-            textFilds.getTextFieldCity().setText("");
-            textFilds.getTextFieldFirstName().setText("");
-            textFilds.getTextFieldLastName().setText("");
 
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-
-    }
-
-    public void createFotDataBase() {
+    public void create() {
         try {
             Create create = new Create();
             create.createPerson(fileHelper.getPersonList(), textFilds.getTextFildId(), textFilds.getTextFieldFirstName(), textFilds.getTextFieldLastName(), textFilds.getTextFieldAge(), textFilds.getTextFieldCity());
@@ -70,6 +58,8 @@ public class CreateListener implements ActionListener {
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
+        } catch (InvalidValue e) {
+             JOptionPane.showMessageDialog(frame,e.getMessage(),"Error Invalid Value!!!",JOptionPane.ERROR_MESSAGE);
         }
     }
 }

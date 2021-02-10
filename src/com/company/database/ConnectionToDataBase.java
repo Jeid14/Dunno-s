@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class ConnectionToDataBase {
 
 
-    public Connection getConnection(String url, String password, String userName){
+    public Connection getConnection(String url, String userName, String password){
         Connection connection;
         try {
             Class.forName("org.h2.Driver");
@@ -46,7 +46,7 @@ public abstract class ConnectionToDataBase {
             try {
                 ResultSet set = statement.executeQuery();
             } catch (SQLException e) {
-                System.out.println(4);
+
 
             }
         } catch (SQLException throwables) {
@@ -63,7 +63,7 @@ public abstract class ConnectionToDataBase {
                 try {
                     ResultSet resultSet = statement.executeQuery();
                 } catch (SQLException e) {
-                    System.out.println(5);
+
                 }
             }
         } catch (SQLException throwables) {

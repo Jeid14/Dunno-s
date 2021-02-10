@@ -5,35 +5,39 @@ import com.company.Listeners.*;
 import com.company.executor.ExecutorFactory;
 import com.company.model.Person;
 import com.company.utils.ConstantString;
+import com.company.utils.Constants;
 import com.company.utils.FileHelper;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 public class InterfaceMain extends JFrame {
-    JFrame frame = new JFrame("Dunno-s");
+    JFrame frame = new JFrame(ConstantString.TEAM_NAME);
     TextFilds textFilds = new TextFilds();
-    String[] sqlNonSql = new String[]{"DATABASE","SQL-PostgresSql","SQL-H2","SQL-mySql","NonSQL"};
+
     //Table table = new Table(frame,textFilds);
     FileHelper fileHelper = new FileHelper();
 
     public void createFrame() throws IOException {
 
-        textFilds.getTextFieldId().setBounds(500, 70, 100, 20);
+        textFilds.getTextFieldId().setBounds(500, 70, 130, 25);
 
-        textFilds.getTextFieldFirstName().setBounds(500, 120, 100, 20);
+        textFilds.getTextFieldFirstName().setBounds(500, 120, 130, 25);
 
-        textFilds.getTextFieldLastName().setBounds(500, 170, 100, 20);
+        textFilds.getTextFieldLastName().setBounds(500, 170, 130, 25);
 
-        textFilds.getTextFieldCity().setBounds(500, 220, 100, 20);
+        textFilds.getTextFieldCity().setBounds(500, 220, 130, 25);
 
-        textFilds.getTextFieldAge().setBounds(500, 270, 100, 20);
+        textFilds.getTextFieldAge().setBounds(500, 270, 130, 25);
 
         JLabel labelId = new JLabel(ConstantString.ENTER_ID);
         labelId.setBounds(500, 50, 100, 20);
@@ -49,34 +53,37 @@ public class InterfaceMain extends JFrame {
         labelControlPanel.setBounds(500, 30, 100, 20);
 
         JButton buttonCreate = new JButton(ConstantString.CREATE);
-        buttonCreate.setBounds(500, 300, 100, 20);
+        buttonCreate.setBounds(500, 303, 130, 30);
 
-        ActionListener bCreate = new CreateListener(textFilds, frame,fileHelper);
+        ActionListener bCreate = new CreateListener(textFilds, frame, fileHelper);
         buttonCreate.addActionListener(bCreate);
 
         JButton buttonUpdate = new JButton(ConstantString.UPDATE);
-        buttonUpdate.setBounds(500, 320, 100, 20);
-        ActionListener bUodate = new UpdateListener(textFilds,frame);
+        buttonUpdate.setBounds(500, 348, 130, 30);
+        ActionListener bUodate = new UpdateListener(textFilds, frame,fileHelper);
+
         buttonUpdate.addActionListener(bUodate);
         JButton buttonDelete = new JButton(ConstantString.DELETE);
-        buttonDelete.setBounds(500, 340, 100, 20);
-        ActionListener bDelete = new DeleteListener(textFilds, frame,fileHelper);
+        buttonDelete.setBounds(500, 393, 130, 30);
+
+        ActionListener bDelete = new DeleteListener(textFilds, frame, fileHelper);
         buttonDelete.addActionListener(bDelete);
-        JButton buttonOpenFile = new JButton("File");
-        ActionListener open = new ButtonsListeners(frame, textFilds,fileHelper);
+        JButton buttonOpenFile = new JButton(ConstantString.FILE);
+        ActionListener open = new ButtonsListeners(frame, textFilds, fileHelper);
         buttonOpenFile.addActionListener(open);
-        buttonOpenFile.setBounds(50, 10, 100, 20);
+        buttonOpenFile.setBounds(20, 10, 120, 30);
 
 
-        JComboBox jComboBox = new JComboBox(sqlNonSql);
-        jComboBox.setBounds(160,10,110,20);
-        ActionListener dTListener = new DataBaseListener(frame,textFilds,fileHelper);
+        JComboBox jComboBox = new JComboBox(Constants.SQL_NON_SQL);
+        jComboBox.setBounds(160, 10, 120, 30);
+        ActionListener dTListener = new DataBaseListener(frame, textFilds, fileHelper);
         jComboBox.addActionListener(dTListener);
+        jComboBox.setBackground(Color.lightGray);
 
 
-        JButton buttonClearAll = new JButton("CLEAR ALL");
-        buttonClearAll.setBounds(50, 360, 100, 20);
-        ActionListener dCAll = new ClearAllLiestener(frame);
+        JButton buttonClearAll = new JButton(ConstantString.CLEAR_ALL);
+        buttonClearAll.setBounds(10, 385, 150, 40);
+        ActionListener dCAll = new ClearAllLiestener(frame,fileHelper);
         buttonClearAll.addActionListener(dCAll);
 
 
@@ -87,13 +94,21 @@ public class InterfaceMain extends JFrame {
         frame.add(labelAge);
         frame.add(labelControlPanel);
 
+        frame.getContentPane().setBackground(Color.decode("#cbe8f3"));
+        buttonUpdate.setBackground(Color.lightGray);
+        buttonCreate.setBackground(Color.lightGray);
+        buttonDelete.setBackground(Color.lightGray);
+        buttonOpenFile.setBackground(Color.lightGray);
+        buttonClearAll.setBackground(Color.lightGray);
+
+
         frame.add(textFilds.getTextFieldId());
         frame.add(textFilds.getTextFieldFirstName());
         frame.add(textFilds.getTextFieldLastName());
         frame.add(textFilds.getTextFieldCity());
         frame.add(textFilds.getTextFieldAge());
 
-        frame.setLocation(550, 300);
+        frame.setLocation(550, 250);
 
         frame.add(buttonCreate);
         frame.add(buttonUpdate);
@@ -102,15 +117,16 @@ public class InterfaceMain extends JFrame {
         frame.add(jComboBox);
 
 
-
         frame.add(buttonClearAll);
+        frame.setIconImage(ImageIO.read(new File(ConstantString.ICON)));
 
-        frame.setSize(700, 500);
+        frame.setSize(700, 470);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setVisible(true);
     }
-    public  JFrame getFrame(){
+
+    public JFrame getFrame() {
         return frame;
     }
 //

@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class TextFilds {
     JTextField textFieldId = new JTextField();
+
     JTextField textFieldFirstName = new JTextField();
     JTextField textFieldLastName = new JTextField();
     JTextField textFieldCity = new JTextField();
