@@ -118,7 +118,7 @@ public class InterfaceMain extends JFrame {
 
 
         frame.add(buttonClearAll);
-        frame.setIconImage(ImageIO.read(new File(ConstantString.ICON)));
+        //frame.setIconImage(ImageIO.read(new File(ConstantString.ICON)));
 
         frame.setSize(700, 470);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
