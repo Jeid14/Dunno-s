@@ -32,7 +32,7 @@ public class PersonConvertYaml implements IPersonConvertor {
     public List<Person> convertStrToPerson(String personStr) throws IOException {
 
 
-        return mapper.readValue(new File(new FileHelper().getFileExtension()), new TypeReference<List<Person>>() {
+        return mapper.readValue(new File(ButtonsListeners.path), new TypeReference<List<Person>>() {
         });
 
     }

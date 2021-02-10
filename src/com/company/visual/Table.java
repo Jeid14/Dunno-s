@@ -43,21 +43,28 @@ public class Table {
         model.addColumn(ConstantString.ENTER_CITY);
         model.addColumn(ConstantString.ENTER_AGE);
 
+
         for (Person p : personList) {
             model.addRow(new String[]{String.valueOf(p.getId()), p.getFirstName(), p.getLastName(), p.getCity(), String.valueOf(p.getAge())});
         }
         JTable jtable = new JTable(model);
         jtable.setFillsViewportHeight(true);
+        jtable.getTableHeader().setReorderingAllowed(false);
 
-        jtable.getColumnModel().getColumn(0).setPreferredWidth(2);
-        jtable.getColumnModel().getColumn(4).setPreferredWidth(2);
-        jtable.getColumnModel().getColumn(3).setPreferredWidth(15);
+        jtable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        jtable.getColumnModel().getColumn(1).setPreferredWidth(15);
+        jtable.getColumnModel().getColumn(3).setPreferredWidth(10);
+
+        jtable.getColumnModel().getColumn(4).setPreferredWidth(0);
+
 
 
         MouseListener listener = new TableListener(jtable, textFilds);
         jtable.addMouseListener(listener);
 
         scrollPane = createScrollPane(jtable);
+        scrollPane.setBackground(Color.lightGray);
+
         frame.add(scrollPane);
 
     }
@@ -77,7 +84,7 @@ public class Table {
         scrollPane = new JScrollPane(defaultTable,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        this.scrollPane.setBounds(30, 35, 450, 300);
+        this.scrollPane.setBounds(10, 50, 470, 300);
         return scrollPane;
     }
 }

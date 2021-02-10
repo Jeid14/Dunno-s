@@ -7,6 +7,7 @@ import com.company.visual.TextFilds;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -35,6 +36,7 @@ public class ButtonsListeners implements ActionListener {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showDialog(frame, "Open");
         path = fileChooser.getSelectedFile().getAbsolutePath();
+        frame.setTitle(fileChooser.getSelectedFile().getPath());
         try {
             if (countOpen == 0) {
                 table = new Table(frame, textFilds, fileHelper);

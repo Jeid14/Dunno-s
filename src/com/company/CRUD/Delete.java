@@ -11,26 +11,24 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Delete {
-    public void deleteOnePerson(List<Person> personList, JTextField textFieldId) throws IOException {
+    public void deleteOnePerson(List<Person> personList, JTextField textFieldId) throws IllegalArgumentException, IOException {
         int count = 0;
         Person personForDelete = new Person();
         int id = Integer.parseInt(textFieldId.getText());
-
         for (Person p : personList) {
             if (p.getId() == id) {
                 personForDelete = p;
                 count++;
-
             }
 
         }
         if (count == 0) {
-            textFieldId.setText("Персона не найдена");
-
+           throw new IllegalArgumentException("Person not found!");
 
         }
-         personList.remove(personForDelete);
-
+        else {
+            personList.remove(personForDelete);
+        }
         FileHelper fileHelper = new FileHelper();
         fileHelper.saveChange(personList);
     }

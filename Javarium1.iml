@@ -10,8 +10,10 @@
     <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" name="com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2" level="project" />
     <orderEntry type="library" name="com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.1" level="project" />
-    <orderEntry type="library" name="com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.10.1" level="project" />
     <orderEntry type="library" name="postgresql-42.2.18 (1)" level="project" />
     <orderEntry type="library" name="com.h2database:h2:1.4.200" level="project" />
+    <orderEntry type="library" name="com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.8.2" level="project" />
+    <orderEntry type="library" name="Connector J 8" level="project" />
+    <orderEntry type="library" name="org.neo4j.driver:neo4j-java-driver:4.2.0" level="project" />
   </component>
 </module>
