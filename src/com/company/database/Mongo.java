@@ -15,7 +15,7 @@ public class Mongo extends ConnectionNoSql{
     MongoClient mongoClient;
 
     public MongoClient getConnection() {
-       return new MongoClient( "localhost" , 27017 );
+       return new MongoClient( "localhost", 27017);
     }
 
     public MongoCollection<Document> getTable(){
