@@ -14,7 +14,13 @@ public class Update {
 
     public void updatePerson(List<Person> personList, TextFilds textFilds) throws IOException, InvalidValue {
         int count = 0;
-        int id = Integer.parseInt(textFilds.getTextFildId().getText());
+        int id = 0;
+        try {
+            id = Integer.parseInt(textFilds.getTextFildId().getText());
+        }
+        catch (NumberFormatException e){
+            throw new InvalidValue("ID need be just Number!");
+        }
         if (id < 0) {
             textFilds.getTextFieldId().setText(("Id cant be minus"));
         }
@@ -25,7 +31,12 @@ public class Update {
                 p.setLastName(textFilds.getTextFieldLastName().getText());
                 p.setCity(textFilds.getTextFieldCity().getText());
                 count++;
-                int age = Integer.parseInt(textFilds.getTextFieldAge().getText());
+                int age = 0;
+                try {
+                     age = Integer.parseInt(textFilds.getTextFieldAge().getText());
+                } catch (NumberFormatException e) {
+                    throw new InvalidValue("Age need be just Number!");
+                }
                 if (age < 0 || age > 130) {
                     throw new InvalidValue("Age cannot be minus!");
 
@@ -34,7 +45,7 @@ public class Update {
                 }
             }
 
-            }
+        }
         if (count == 0) {
             throw new InvalidValue("Person not found!");
         }
