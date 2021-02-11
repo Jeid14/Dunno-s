@@ -21,6 +21,8 @@ public class Delete {
         }
         catch (NumberFormatException e){
             throw new InvalidValue("ID need be just Number!");
+
+            
         }
         for (Person p : personList) {
             if (p.getId() == id) {
