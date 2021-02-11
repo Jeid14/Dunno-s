@@ -26,6 +26,9 @@ public class ConstantString {
     public static String DB_CHOSE_POSTGRES = "SQL-PostgresSQL";
     public static String DB_CHOSE_H2 = "SQL-H2";
     public static String DB_CHOSE_MYSQL = "SQL-MySQL";
+    public static String DB_CHOSE_MONGO = "NonSQL - Mongo";
+    public static String DB_CHOSE_GRAPH = "NonSQL - Graph";
+
 
 
 }

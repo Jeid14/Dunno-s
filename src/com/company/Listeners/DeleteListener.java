@@ -5,6 +5,7 @@ import com.company.executor.ExecutorFactory;
 import com.company.utils.FileHelper;
 import com.company.visual.Table;
 import com.company.visual.TextFilds;
+import org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -57,10 +58,10 @@ public class DeleteListener implements ActionListener {
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
-        }
-        catch (IllegalArgumentException e){
+        } catch (InvalidValue e) {
             JOptionPane.showMessageDialog(frame,e.getMessage(),"Error Invalid Value!!!",JOptionPane.ERROR_MESSAGE);
         }
+
 
     }
 }

@@ -38,18 +38,18 @@ public class DataBaseListener implements ActionListener {
                 DB ="Postgres";
                 frame.setTitle(DB);
                 ConnectionToDataBase postgres = new Postgres();
-                createTableFromDataBase(postgres.getConnection(Postgres.url, Postgres.user, Postgres.password), Postgres.url, Postgres.password, Postgres.user, postgres);
+                createTableFromDataBase(postgres.getConnection(Postgres.url, Postgres.user, Postgres.password),  postgres);
                 break;
             case "SQL-H2":
                 DB ="H2";
                 connection = new H2();
                 frame.setTitle(DB);
-                createTableFromDataBase(connection.getConnection(H2.url, H2.user, H2.password), H2.url, H2.user, H2.password, connection);
+                createTableFromDataBase(connection.getConnection(H2.url, H2.user, H2.password),  connection);
                 break;
             case "SQL-MySQL":
                 DB = "MySql";
                 connection = new MySql();
-                createTableFromDataBase(connection.getConnection(MySql.url,MySql.user,MySql.password),MySql.url,MySql.user,MySql.password,connection );
+                createTableFromDataBase(connection.getConnection(MySql.url,MySql.user,MySql.password),connection );
                 break;
 
             case "NonSQL - Graph":
@@ -65,7 +65,7 @@ public class DataBaseListener implements ActionListener {
 
     }
 
-    private void createTableFromDataBase(Connection connection, String url, String user, String password, ConnectionToDataBase connectionToDataBase) {
+    private void createTableFromDataBase(Connection connection, ConnectionToDataBase connectionToDataBase) {
         try {
             if (ButtonsListeners.countOpen == 0) {
                 table = new Table(frame, textFilds, fileHelper);

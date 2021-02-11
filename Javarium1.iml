@@ -16,5 +16,6 @@
     <orderEntry type="library" name="Connector J 8" level="project" />
     <orderEntry type="library" name="org.neo4j.driver:neo4j-java-driver:4.2.0" level="project" />
     <orderEntry type="library" name="mongo-java-driver-3.12.7" level="project" />
+    <orderEntry type="library" name="mongo-java-driver-3.12.71" level="project" />
   </component>
 </module>

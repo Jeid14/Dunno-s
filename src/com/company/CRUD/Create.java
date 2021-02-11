@@ -17,7 +17,14 @@ public class Create {
     public void createPerson(List<Person> personList, JTextField textFieldId, JTextField textFieFn, JTextField textFieLn, JTextField textFieAge, JTextField textFieCity) throws IOException, InvalidValue {
 
         Person person = new Person();
-        int id = Integer.parseInt(textFieldId.getText());
+
+        int id = 0;
+        try {
+            id = Integer.parseInt(textFieldId.getText());
+        }
+        catch (NumberFormatException e){
+            throw new InvalidValue("ID need be just Number!");
+        }
         for (Person p:personList){
            if( p.getId() == id){
                throw  new InvalidValue("Cant create one more Person with same Id!");
@@ -32,7 +39,13 @@ public class Create {
             person.setFirstName(textFieFn.getText());
             person.setLastName(textFieLn.getText());
             person.setCity(textFieCity.getText());
-            int age = Integer.parseInt(textFieAge.getText());
+        int age =0;
+        try {
+            age = Integer.parseInt(textFieAge.getText());
+        }
+        catch (NumberFormatException e){
+            throw new InvalidValue("Age need be just Number!");
+        }
             if(age<0|| age> 130) {
                 throw new InvalidValue("Age cannot be minus!");
             }else {
