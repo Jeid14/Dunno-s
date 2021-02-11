@@ -17,10 +17,7 @@ public class Main {
 
         InterfaceMain interfaceMain = new InterfaceMain();
         interfaceMain.createFrame();
-//        GraphQl graphQl = new GraphQl();
-//        graphQl.getDriver(GraphQl.url,GraphQl.user,GraphQl.password);
-//        List<Person> personList = graphQl.getListFromGraph();
-//        System.out.println(personList);
+
 
 
     }
