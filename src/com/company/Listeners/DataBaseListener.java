@@ -61,6 +61,7 @@ public class DataBaseListener implements ActionListener {
                 DB = "Mongo";
                 ConnectionNoSql mongo = new Mongo();
                 createTableFromNonSql(mongo);
+
                 break;
             case "NonSQL - Cassandra":
                 DB = "Cassandra";

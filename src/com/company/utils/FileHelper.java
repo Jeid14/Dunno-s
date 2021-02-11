@@ -78,10 +78,12 @@ public class FileHelper {
                 mongo.saveUpdateListNonSql(personList);
             }
 
+
             if(DataBaseListener.DB.equals("Cassandra")){
                 ConnectionNoSql cassandra = new Cassandra();
                 cassandra.saveUpdateListNonSql(personList);
             }
+
 
         } else {
             new ExecutorFactory().getInstanceByFormat(getFileExtension()).write(ButtonsListeners.path, personList);
