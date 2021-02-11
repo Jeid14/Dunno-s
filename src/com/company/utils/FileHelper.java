@@ -83,6 +83,10 @@ public class FileHelper {
                 ConnectionNoSql cassandra = new Cassandra();
                 cassandra.saveUpdateListNonSql(personList);
             }
+            if(DataBaseListener.DB.equals("Redis")){
+                ConnectionNoSql redis = new Redis();
+                redis.saveUpdateListNonSql(personList);
+            }
 
 
         } else {
