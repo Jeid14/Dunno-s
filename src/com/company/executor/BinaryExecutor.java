@@ -1,6 +1,5 @@
 package com.company.executor;
 
-import com.company.executor.Executable;
 import com.company.model.Person;
 
 import java.io.*;

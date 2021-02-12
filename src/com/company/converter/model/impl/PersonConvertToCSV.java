@@ -1,4 +1,4 @@
-package com.company.converter.model;
+package com.company.converter.model.impl;
 
 import com.company.converter.IPersonConvertor;
 import com.company.model.Person;
@@ -30,6 +30,7 @@ public class PersonConvertToCSV implements IPersonConvertor {
             return csvMapper.readValue(personStr, new TypeReference<List<Person>>() {
             });
         } catch (MismatchedInputException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

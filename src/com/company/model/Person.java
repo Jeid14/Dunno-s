@@ -1,19 +1,9 @@
 package com.company.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-
 import java.io.Serializable;
 
 
 public class Person implements Serializable {
-
-    private static final String CITY = "City" ;
-    private static final String ID = "ID";
-    private static final String FIRST_NAME = "First Name";
-    private static final String LAST_NAME = "Last Name";
-    private static final String AGE = "Age";
 
     private int id;
     private String firstName;
