@@ -17,7 +17,7 @@ public class DataBaseListener implements ActionListener {
     private final JFrame frame;
     private final TextFields textFields;
     public static String DB ;
-    public static ConnectionToDataBase connection;
+    private   ConnectionToDataBase connection;
 
 
     public DataBaseListener(JFrame frame, TextFields textFields, FileHelper fileHelper) {
@@ -50,30 +50,36 @@ public class DataBaseListener implements ActionListener {
                 break;
             case "SQL-MySQL":
                 DB = "MySql";
+                frame.setTitle(DB);
                 connection = new MySql();
                 createTableFromDataBase(connection.getConnection(Constants.MYSQL_URL,Constants.MYSQL_USER, Constants.MYSQL_PASSWORD),connection );
                 break;
 
             case "NonSQL - Graph":
                 DB = "Graph";
+                frame.setTitle(DB);
                 ConnectionNoSql graphQl = new GraphQl();
                 createTableFromNonSql(graphQl);
                 break;
             case "NonSQL - Mongo":
                 DB = "Mongo";
+                frame.setTitle(DB);
                 ConnectionNoSql mongo = new Mongo();
                 createTableFromNonSql(mongo);
 
                 break;
             case "NonSQL - Cassandra":
                 DB = "Cassandra";
+                frame.setTitle(DB);
                 ConnectionNoSql cassandra = new Cassandra();
                 createTableFromNonSql(cassandra);
                 break;
             case "NonSQL - Redis":
                 DB = "Redis";
+                frame.setTitle(DB);
                 ConnectionNoSql redis  = new Redis();
                 createTableFromNonSql(redis);
+                break;
         }
     }
 
@@ -88,7 +94,7 @@ public class DataBaseListener implements ActionListener {
             } else if (ButtonsListeners.countOpen > 0) {
                 ButtonsListeners.path = null;
                 table = ButtonsListeners.getTable();
-                System.out.println(ButtonsListeners.countOpen);
+
                 fileHelper.setList(connectionToDataBase.getList(connection));
                 table.redrawTable();
             }

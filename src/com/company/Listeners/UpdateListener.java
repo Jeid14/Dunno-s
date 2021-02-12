@@ -12,18 +12,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class UpdateListener  implements ActionListener {
-    TextFields textFields;
-    JFrame frame;
-    Table table;
-    FileHelper fileHelper;
+public class UpdateListener implements ActionListener {
+    private TextFields textFields;
+    private JFrame frame;
+    private Table table;
+    private FileHelper fileHelper;
 
     public UpdateListener(TextFields textFields, JFrame frame, FileHelper fileHelper) {
         this.textFields = textFields;
         this.frame = frame;
         this.fileHelper = fileHelper;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -39,7 +38,7 @@ public class UpdateListener  implements ActionListener {
         }
     }
 
-    public void update(){
+    public void update() {
         Update update = new Update();
         try {
             update.updatePerson(fileHelper.getPersonList(), textFields);
@@ -54,7 +53,7 @@ public class UpdateListener  implements ActionListener {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         } catch (InvalidValue e) {
-            JOptionPane.showMessageDialog(frame,e.getMessage(), Constants.INVALID_VALUE, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, e.getMessage(), Constants.INVALID_VALUE, JOptionPane.ERROR_MESSAGE);
         }
     }
 }

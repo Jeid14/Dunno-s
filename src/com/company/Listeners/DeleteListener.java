@@ -13,10 +13,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class DeleteListener implements ActionListener {
-    TextFields textFields;
-    JFrame frame;
-    Table table;
-    FileHelper fileHelper;
+    private TextFields textFields;
+    private JFrame frame;
+    private Table table;
+    private FileHelper fileHelper;
 
     public DeleteListener(TextFields textFields, JFrame frame, FileHelper fileHelper) {
         this.textFields = textFields;
@@ -39,8 +39,7 @@ public class DeleteListener implements ActionListener {
             delete();
         }
     }
-
-    public void delete(){
+    public void delete() {
         Delete delete = new Delete();
         try {
             delete.deleteOnePerson(fileHelper.getPersonList(), textFields.getTextFieldId());
@@ -55,9 +54,7 @@ public class DeleteListener implements ActionListener {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         } catch (InvalidValue e) {
-            JOptionPane.showMessageDialog(frame,e.getMessage(), Constants.INVALID_VALUE, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, e.getMessage(), Constants.INVALID_VALUE, JOptionPane.ERROR_MESSAGE);
         }
-
-
     }
 }

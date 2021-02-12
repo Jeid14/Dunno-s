@@ -76,6 +76,8 @@ public class FileHelper {
                     cassandra.saveUpdateListNonSql(personList);
                     break;
                 case "Redis":
+                    ConnectionNoSql redis = new Redis();
+                    redis.saveUpdateListNonSql(personList);
                     break;
             }
         }

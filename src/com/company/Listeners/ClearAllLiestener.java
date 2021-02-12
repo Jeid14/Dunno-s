@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class ClearAllLiestener implements ActionListener {
     private final JFrame frame;
-    FileHelper fileHelper;
-    Table table;
+    private FileHelper fileHelper;
+    private Table table;
 
     public ClearAllLiestener(JFrame frame,FileHelper fileHelper) {
         this.fileHelper = fileHelper;
