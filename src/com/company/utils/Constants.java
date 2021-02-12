@@ -77,7 +77,7 @@ public class Constants {
     public static String CASSANDRA_READ = "SELECT * FROM person";
     public static String CASSANDRA_DROP_TABLE = "DROP TABLE person";
     public static String CASSANDRA_CREATE_TABLE = "CREATE TABLE person(id int PRIMARY KEY, firstName text, lastName text, city text, age int);";
-    public static String CASSANDRA_INSERT = "INSERT INTO person (id,firstname,lastname,city,age) VALUES (?,?,?,?,?);";
+    public static String CASSANDRA_INSERT = "INSERT INTO person (id,firstName,lastName,city,age) VALUES (?,?,?,?,?);";
 
     //GraphQl
     public static String GRAPHQL_URL = "bolt://localhost:7687";
@@ -123,7 +123,11 @@ public class Constants {
     public static String POSTGRES_USER = "postgres";
     public static String POSTGRES_PASSWORD = "1111";
 
-
+//Redis
+    public static String SEPARATOR = "\u00D8";
+    public static String REDIS_HOST = "localhost";
+    public static String REDIS_KEY = "person";
+    public static int REDIS_PORT = 6379;
 
 
 }

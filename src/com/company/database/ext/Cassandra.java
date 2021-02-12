@@ -50,20 +50,21 @@ public class Cassandra extends ConnectionNoSql {
 
     @Override
     public void saveUpdateListNonSql(List<Person> personList) {
+        Session session = getConnection();
 
-        getConnection().execute(Constants.CASSANDRA_DROP_TABLE);
-        getConnection().execute(Constants.CASSANDRA_CREATE_TABLE);
+        session.execute(Constants.CASSANDRA_DROP_TABLE);
+        session.execute(Constants.CASSANDRA_CREATE_TABLE);
 
         for (Person person : personList) {
             Map<String, Object> params = new HashMap<>();
 
             params.put(Constants.ID, person.getId());
-            params.put(Constants.FIRST_NAME, person.getFirstName());
-            params.put(Constants.LAST_NAME, person.getLastName());
+            params.put("firstname", person.getFirstName());
+            params.put("lastname", person.getLastName());
             params.put(Constants.CITY, person.getCity());
             params.put(Constants.AGE, person.getAge());
 
-            getConnection().execute(Constants.CASSANDRA_INSERT, params);
+            session.execute(Constants.CASSANDRA_INSERT, params);
         }
         cluster.close();
     }

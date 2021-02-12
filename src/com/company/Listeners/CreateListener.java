@@ -13,9 +13,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class CreateListener implements ActionListener {
-    TextFields textFields;
-    JFrame frame;
-    FileHelper fileHelper;
+    private TextFields textFields;
+    private JFrame frame;
+    private FileHelper fileHelper;
 
 
     public CreateListener(TextFields textFields, JFrame frame, FileHelper fileHelper) {
@@ -54,7 +54,7 @@ public class CreateListener implements ActionListener {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         } catch (InvalidValue e) {
-             JOptionPane.showMessageDialog(frame,e.getMessage(), Constants.INVALID_VALUE ,JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, e.getMessage(), Constants.INVALID_VALUE, JOptionPane.ERROR_MESSAGE);
         }
     }
 }

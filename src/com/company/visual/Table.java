@@ -68,7 +68,6 @@ public class Table {
 
     }
 
-
     public void redrawTable() throws IOException {
         frame.remove(this.scrollPane);
         if (ButtonsListeners.path != null) {

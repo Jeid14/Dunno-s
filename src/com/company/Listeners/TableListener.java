@@ -1,24 +1,23 @@
 package com.company.Listeners;
+
 import com.company.visual.TextFields;
 
 import javax.swing.*;
 import java.awt.event.*;
 
 public class TableListener implements MouseListener {
-    private  JTable table;
-    TextFields textFields;
-
+    private JTable table;
+    private TextFields textFields;
 
 
     public TableListener(JTable table, TextFields textFields) {
         this.table = table;
         this.textFields = textFields;
-
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-       if (table.getSelectedRow() > -1) {
+        if (table.getSelectedRow() > -1) {
             textFields.getTextFildId().setText(table.getValueAt(table.getSelectedRow(), 0).toString());
             textFields.getTextFieldFirstName().setText(table.getValueAt(table.getSelectedRow(), 1).toString());
             textFields.getTextFieldLastName().setText(table.getValueAt(table.getSelectedRow(), 2).toString());
@@ -28,7 +27,6 @@ public class TableListener implements MouseListener {
         }
 
     }
-
     @Override
     public void mousePressed(MouseEvent e) {
     }

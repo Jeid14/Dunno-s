@@ -58,7 +58,6 @@ public class ButtonsListeners implements ActionListener {
             ioException.printStackTrace();
         }
     }
-
     public static Table getTable() {
         return table;
     }

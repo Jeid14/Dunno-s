@@ -9,8 +9,6 @@ import java.util.List;
 
 
 public abstract class ConnectionToDataBase {
-
-
     public Connection getConnection(String url, String user, String password){
         Connection connection;
         try {
@@ -27,7 +25,6 @@ public abstract class ConnectionToDataBase {
         return null;
 
     }
-
 
     public void saveUpdateList(List<Person> personList, Connection connection) {
 
