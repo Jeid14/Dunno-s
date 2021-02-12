@@ -13,7 +13,7 @@ public class H2 extends ConnectionToDataBase {
 
     public Connection getConnection(String url, String user, String password) {
         try {
-            connection = DriverManager.getConnection(url,user,password);
+            connection = DriverManager.getConnection(Constants.H2_URL,Constants.H2_USER,Constants.H2_PASSWORD);
             return connection;
         } catch (SQLException throwables) {
             System.out.println(Constants.DATA_PROBLEM);

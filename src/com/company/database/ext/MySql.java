@@ -13,7 +13,7 @@ public class MySql extends ConnectionToDataBase {
 
     @Override
     public Connection getConnection(String url,String user,String password)  {
-        return super.getConnection(url,user,password);
+        return super.getConnection(Constants.MYSQL_URL,Constants.MYSQL_USER,Constants.MYSQL_PASSWORD);
     }
 
     @Override
@@ -52,7 +52,6 @@ public class MySql extends ConnectionToDataBase {
                 try {
                     int resultSet = statement.executeUpdate();
                 } catch (SQLException e) {
-                    System.out.println(5);
 
                 }
             }

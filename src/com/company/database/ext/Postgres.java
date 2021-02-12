@@ -2,6 +2,7 @@ package com.company.database.ext;
 
 import com.company.database.ConnectionToDataBase;
 import com.company.model.Person;
+import com.company.utils.Constants;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,8 +15,8 @@ public class Postgres extends ConnectionToDataBase {
 
 
     @Override
-    public Connection getConnection(String url, String password, String user) {
-        return super.getConnection(url, password, user);
+    public Connection getConnection(String url,  String user,String password) {
+        return super.getConnection(Constants.POSTGRES_URL, Constants.POSTGRES_USER, Constants.POSTGRES_PASSWORD);
     }
 
     @Override

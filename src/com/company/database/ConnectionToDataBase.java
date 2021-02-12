@@ -15,13 +15,13 @@ public abstract class ConnectionToDataBase {
         Connection connection;
         try {
             Class.forName(Constants.H2_DRIVER);
-            connection = DriverManager.getConnection(Constants.H2_URL, Constants.H2_USER, Constants.H2_PASSWORD);
+            connection = DriverManager.getConnection(url, user, password);
             return connection;
         } catch (SQLException throwables) {
             System.out.println(Constants.DATA_PROBLEM);
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
-            System.out.println(1);
+
             e.printStackTrace();
         }
         return null;

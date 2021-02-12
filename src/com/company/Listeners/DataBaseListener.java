@@ -70,10 +70,10 @@ public class DataBaseListener implements ActionListener {
                 ConnectionNoSql cassandra = new Cassandra();
                 createTableFromNonSql(cassandra);
                 break;
-
             case "NonSQL - Redis":
                 DB = "Redis";
-                break;
+                ConnectionNoSql redis  = new Redis();
+                createTableFromNonSql(redis);
         }
     }
 
