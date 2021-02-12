@@ -1,31 +1,29 @@
 package com.company.Listeners;
 
-import com.company.model.Person;
+import com.company.utils.Constants;
 import com.company.utils.FileHelper;
 import com.company.visual.Table;
-import com.company.visual.TextFilds;
+import com.company.visual.TextFields;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.List;
 
 public class ButtonsListeners implements ActionListener {
     public static String path;
     private final JFrame frame;
-    private final TextFilds textFilds;
+    private final TextFields textFields;
     private final FileHelper fileHelper;
     private static Table table;
     static int countOpen = 0;
 
 
-    public ButtonsListeners(JFrame frame, TextFilds textFilds, FileHelper fileHelper) {
+    public ButtonsListeners(JFrame frame, TextFields textFields, FileHelper fileHelper) {
 
         this.frame = frame;
-        this.textFilds = textFilds;
+        this.textFields = textFields;
         this.fileHelper = fileHelper;
 
     }
@@ -34,12 +32,12 @@ public class ButtonsListeners implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.showDialog(frame, "Open");
+        fileChooser.showDialog(frame, Constants.BUTTON_OPEN);
         path = fileChooser.getSelectedFile().getAbsolutePath();
         frame.setTitle(fileChooser.getSelectedFile().getPath());
         try {
             if (countOpen == 0) {
-                table = new Table(frame, textFilds, fileHelper);
+                table = new Table(frame, textFields, fileHelper);
                 setTable(table);
                 fileHelper.isEmpty();
                 table.createTable(fileHelper.getPersonList());
@@ -49,11 +47,11 @@ public class ButtonsListeners implements ActionListener {
                 table.redrawTable();
             }
 
-            textFilds.getTextFildId().setText("");
-            textFilds.getTextFieldAge().setText("");
-            textFilds.getTextFieldCity().setText("");
-            textFilds.getTextFieldFirstName().setText("");
-            textFilds.getTextFieldLastName().setText("");
+            textFields.getTextFildId().setText("");
+            textFields.getTextFieldAge().setText("");
+            textFields.getTextFieldCity().setText("");
+            textFields.getTextFieldFirstName().setText("");
+            textFields.getTextFieldLastName().setText("");
 
 
         } catch (IOException ioException) {

@@ -1,33 +1,28 @@
 package com.company.Listeners;
 
 import com.company.CRUD.Create;
-import com.company.Main;
+import com.company.utils.Constants;
 import com.company.utils.FileHelper;
-import com.company.visual.InterfaceMain;
 import com.company.visual.Table;
-import com.company.visual.TextFilds;
+import com.company.visual.TextFields;
 import org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class CreateListener implements ActionListener {
-    TextFilds textFilds;
+    TextFields textFields;
     JFrame frame;
     FileHelper fileHelper;
 
 
-    public CreateListener(TextFilds textFilds, JFrame frame, FileHelper fileHelper) {
-        this.textFilds = textFilds;
+    public CreateListener(TextFields textFields, JFrame frame, FileHelper fileHelper) {
+        this.textFields = textFields;
         this.frame = frame;
         this.fileHelper = fileHelper;
-
-
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -47,19 +42,19 @@ public class CreateListener implements ActionListener {
     public void create() {
         try {
             Create create = new Create();
-            create.createPerson(fileHelper.getPersonList(), textFilds.getTextFildId(), textFilds.getTextFieldFirstName(), textFilds.getTextFieldLastName(), textFilds.getTextFieldAge(), textFilds.getTextFieldCity());
+            create.createPerson(fileHelper.getPersonList(), textFields.getTextFildId(), textFields.getTextFieldFirstName(), textFields.getTextFieldLastName(), textFields.getTextFieldAge(), textFields.getTextFieldCity());
             Table table = ButtonsListeners.getTable();
             table.redrawTable();
-            textFilds.getTextFildId().setText("");
-            textFilds.getTextFieldAge().setText("");
-            textFilds.getTextFieldCity().setText("");
-            textFilds.getTextFieldFirstName().setText("");
-            textFilds.getTextFieldLastName().setText("");
+            textFields.getTextFildId().setText("");
+            textFields.getTextFieldAge().setText("");
+            textFields.getTextFieldCity().setText("");
+            textFields.getTextFieldFirstName().setText("");
+            textFields.getTextFieldLastName().setText("");
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
         } catch (InvalidValue e) {
-             JOptionPane.showMessageDialog(frame,e.getMessage(),"Error Invalid Value!!!",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(frame,e.getMessage(), Constants.INVALID_VALUE ,JOptionPane.ERROR_MESSAGE);
         }
     }
 }

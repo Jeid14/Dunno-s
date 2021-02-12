@@ -1,5 +1,6 @@
-package com.company.database;
+package com.company.database.ext;
 
+import com.company.database.ConnectionToDataBase;
 import com.company.model.Person;
 
 import java.sql.Connection;
@@ -10,9 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Postgres extends ConnectionToDataBase {
-    public static String url = "jdbc:postgresql://localhost:5432/persons";
-    public static String user = "postgres";
-    public static String password = "1111";
+
 
     @Override
     public Connection getConnection(String url, String password, String user) {

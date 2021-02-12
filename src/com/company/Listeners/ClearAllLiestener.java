@@ -1,12 +1,10 @@
 package com.company.Listeners;
 
+import com.company.utils.Constants;
 import com.company.utils.FileHelper;
-import com.company.visual.InterfaceMain;
 import com.company.visual.Table;
-import com.company.visual.TextFilds;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -16,8 +14,6 @@ public class ClearAllLiestener implements ActionListener {
     private final JFrame frame;
     FileHelper fileHelper;
     Table table;
-    TextFilds textFilds;
-
 
     public ClearAllLiestener(JFrame frame,FileHelper fileHelper) {
         this.fileHelper = fileHelper;
@@ -26,7 +22,7 @@ public class ClearAllLiestener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int res = JOptionPane.showConfirmDialog(frame,"Delete all DATA from file?","You are sure?",JOptionPane.YES_NO_OPTION);
+        int res = JOptionPane.showConfirmDialog(frame, Constants.MAS_CLEAR_ALL, Constants.MAS_Q_SURE, JOptionPane.YES_NO_OPTION);
         switch (res){
             case 0:
                 try {

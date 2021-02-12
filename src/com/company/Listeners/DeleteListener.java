@@ -1,26 +1,25 @@
 package com.company.Listeners;
 
 import com.company.CRUD.Delete;
-import com.company.executor.ExecutorFactory;
+import com.company.utils.Constants;
 import com.company.utils.FileHelper;
 import com.company.visual.Table;
-import com.company.visual.TextFilds;
+import com.company.visual.TextFields;
 import org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class DeleteListener implements ActionListener {
-    TextFilds textFilds;
+    TextFields textFields;
     JFrame frame;
     Table table;
     FileHelper fileHelper;
 
-    public DeleteListener(TextFilds textFilds, JFrame frame,FileHelper fileHelper) {
-        this.textFilds = textFilds;
+    public DeleteListener(TextFields textFields, JFrame frame, FileHelper fileHelper) {
+        this.textFields = textFields;
         this.frame = frame;
         this.fileHelper = fileHelper;
 
@@ -39,27 +38,24 @@ public class DeleteListener implements ActionListener {
             }
             delete();
         }
-
-
-
     }
 
     public void delete(){
         Delete delete = new Delete();
         try {
-            delete.deleteOnePerson(fileHelper.getPersonList(),textFilds.getTextFieldId());
+            delete.deleteOnePerson(fileHelper.getPersonList(), textFields.getTextFieldId());
             table = ButtonsListeners.getTable();
             table.redrawTable();
-            textFilds.getTextFildId().setText("");
-            textFilds.getTextFieldAge().setText("");
-            textFilds.getTextFieldCity().setText("");
-            textFilds.getTextFieldFirstName().setText("");
-            textFilds.getTextFieldLastName().setText("");
+            textFields.getTextFildId().setText("");
+            textFields.getTextFieldAge().setText("");
+            textFields.getTextFieldCity().setText("");
+            textFields.getTextFieldFirstName().setText("");
+            textFields.getTextFieldLastName().setText("");
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
         } catch (InvalidValue e) {
-            JOptionPane.showMessageDialog(frame,e.getMessage(),"Error Invalid Value!!!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame,e.getMessage(), Constants.INVALID_VALUE, JOptionPane.ERROR_MESSAGE);
         }
 
 

@@ -1,6 +1,8 @@
-package com.company.database;
+package com.company.database.ext;
 
+import com.company.database.ConnectionNoSql;
 import com.company.model.Person;
+import com.company.utils.Constants;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -10,18 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Mongo extends ConnectionNoSql{
+public class Mongo extends ConnectionNoSql {
 
     MongoClient mongoClient;
 
     public MongoClient getConnection() {
 
-       return new MongoClient( "localhost" , 27017 );
+       return new MongoClient(Constants.MONGO_HOST, Constants.MONGO_PORT);
 
     }
 
     public MongoCollection<Document> getTable(){
-        return mongoClient.getDatabase("persons").getCollection("person");
+        return mongoClient.getDatabase(Constants.MONGO_DB_NAME).getCollection(Constants.MONGO_COLLECTION_NAME);
     }
 
     @Override
@@ -37,11 +39,11 @@ public class Mongo extends ConnectionNoSql{
 
             Document document = documentFindIterable.next();
 
-            person.setId(document.getInteger("id"));
-            person.setFirstName(document.getString("firstName"));
-            person.setLastName(document.getString("lastName"));
-            person.setCity(document.getString("city"));
-            person.setAge(document.getInteger("age"));
+            person.setId(document.getInteger(Constants.ID));
+            person.setFirstName(document.getString(Constants.FIRST_NAME));
+            person.setLastName(document.getString(Constants.LAST_NAME));
+            person.setCity(document.getString(Constants.CITY));
+            person.setAge(document.getInteger(Constants.AGE));
 
             personList.add(person);
         }
@@ -55,17 +57,17 @@ public class Mongo extends ConnectionNoSql{
         mongoClient = getConnection();
 
         getTable().drop();
-        mongoClient.getDatabase("persons").createCollection("person");
+        mongoClient.getDatabase(Constants.MONGO_DB_NAME).createCollection(Constants.MONGO_COLLECTION_NAME);
 
         for (Person person : personList) {
 
             Document document = new Document();
 
-            document.put("id", person.getId());
-            document.put("firstName", person.getFirstName());
-            document.put("lastName", person.getLastName());
-            document.put("city", person.getCity());
-            document.put("age", person.getAge());
+            document.put(Constants.ID, person.getId());
+            document.put(Constants.FIRST_NAME, person.getFirstName());
+            document.put(Constants.LAST_NAME, person.getLastName());
+            document.put(Constants.CITY, person.getCity());
+            document.put(Constants.AGE, person.getAge());
 
             getTable().insertOne(document);
         }

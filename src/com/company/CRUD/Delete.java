@@ -1,15 +1,13 @@
 package com.company.CRUD;
 
 import com.company.model.Person;
-import com.company.utils.ConstantString;
+import com.company.utils.Constants;
 import com.company.utils.FileHelper;
 import org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Delete {
     public void deleteOnePerson(List<Person> personList, JTextField textFieldId) throws InvalidValue, IOException {
@@ -20,7 +18,7 @@ public class Delete {
             id = Integer.parseInt(textFieldId.getText());
         }
         catch (NumberFormatException e){
-            throw new InvalidValue("ID need be just Number!");
+            throw new InvalidValue(Constants.ONLY_ONE_ID);
 
             
         }
@@ -32,7 +30,7 @@ public class Delete {
 
         }
         if (count == 0) {
-            throw new InvalidValue("Person not found!");
+            throw new InvalidValue(Constants.NO_PERSON);
 
         } else {
             personList.remove(personForDelete);

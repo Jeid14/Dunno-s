@@ -1,16 +1,13 @@
 package com.company.CRUD;
 
-import com.company.Listeners.ButtonsListeners;
 import com.company.model.Person;
-import com.company.utils.ConstantString;
+import com.company.utils.Constants;
 import com.company.utils.FileHelper;
-import com.oracle.jrockit.jfr.InvalidValueException;
 import org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 public class Create {
 
@@ -23,16 +20,16 @@ public class Create {
             id = Integer.parseInt(textFieldId.getText());
         }
         catch (NumberFormatException e){
-            throw new InvalidValue("ID need be just Number!");
+            throw new InvalidValue(Constants.JUST_NUMBER);
         }
         for (Person p:personList){
            if( p.getId() == id){
-               throw  new InvalidValue("Cant create one more Person with same Id!");
+               throw  new InvalidValue(Constants.ONLY_ONE_ID);
            }
 
         }
         if (id<=0){
-            throw new InvalidValue("Id cannot be less than 1!");
+            throw new InvalidValue(Constants.ID_LESS_ONE);
         }else {
             person.setId(id);
         }
@@ -44,10 +41,10 @@ public class Create {
             age = Integer.parseInt(textFieAge.getText());
         }
         catch (NumberFormatException e){
-            throw new InvalidValue("Age need be just Number!");
+            throw new InvalidValue(Constants.AGE_ONLY_NUM);
         }
             if(age<0|| age> 130) {
-                throw new InvalidValue("Age cannot be minus!");
+                throw new InvalidValue(Constants.AGE_ONLY_POSITIVE);
             }else {
                 person.setAge(age);
             }

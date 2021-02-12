@@ -1,4 +1,4 @@
-package com.company.converter.model;
+package com.company.converter.model.impl;
 import com.company.Listeners.ButtonsListeners;
 import com.company.converter.IPersonConvertor;
 

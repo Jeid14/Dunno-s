@@ -4,7 +4,7 @@ package com.company.visual;
 import com.company.Listeners.ButtonsListeners;
 import com.company.Listeners.TableListener;
 import com.company.model.Person;
-import com.company.utils.ConstantString;
+import com.company.utils.Constants;
 import com.company.utils.FileHelper;
 
 
@@ -14,7 +14,6 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,11 +22,11 @@ public class Table {
     private final JFrame frame;
     JScrollPane scrollPane;
 
-    TextFilds textFilds;
+    TextFields textFields;
 
-    public Table(JFrame frame, TextFilds textFilds, FileHelper fileHelper) {
+    public Table(JFrame frame, TextFields textFields, FileHelper fileHelper) {
         this.frame = frame;
-        this.textFilds = textFilds;
+        this.textFields = textFields;
         this.fileHelper = fileHelper;
 
     }
@@ -37,11 +36,11 @@ public class Table {
 
         DefaultTableModel model = new DefaultTableModel();
 
-        model.addColumn(ConstantString.ENTER_ID);
-        model.addColumn(ConstantString.ENTER_FIRST_NAME);
-        model.addColumn(ConstantString.ENTER_LAST_NAME);
-        model.addColumn(ConstantString.ENTER_CITY);
-        model.addColumn(ConstantString.ENTER_AGE);
+        model.addColumn(Constants.ID);
+        model.addColumn(Constants.FIRST_NAME);
+        model.addColumn(Constants.LAST_NAME);
+        model.addColumn(Constants.CITY);
+        model.addColumn(Constants.AGE);
 
 
         for (Person p : personList) {
@@ -59,7 +58,7 @@ public class Table {
 
 
 
-        MouseListener listener = new TableListener(jtable, textFilds);
+        MouseListener listener = new TableListener(jtable, textFields);
         jtable.addMouseListener(listener);
 
         scrollPane = createScrollPane(jtable);

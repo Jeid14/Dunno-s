@@ -1,6 +1,7 @@
 package com.company.database;
 
 import com.company.model.Person;
+import com.company.utils.Constants;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,14 +11,14 @@ import java.util.List;
 public abstract class ConnectionToDataBase {
 
 
-    public Connection getConnection(String url, String userName, String password){
+    public Connection getConnection(String url, String user, String password){
         Connection connection;
         try {
-            Class.forName("org.h2.Driver");
-            connection = DriverManager.getConnection(url, userName, password);
+            Class.forName(Constants.H2_DRIVER);
+            connection = DriverManager.getConnection(Constants.H2_URL, Constants.H2_USER, Constants.H2_PASSWORD);
             return connection;
         } catch (SQLException throwables) {
-            System.out.println("DATA problem");
+            System.out.println(Constants.DATA_PROBLEM);
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println(1);
@@ -31,18 +32,18 @@ public abstract class ConnectionToDataBase {
     public void saveUpdateList(List<Person> personList, Connection connection) {
 
         try {
-            PreparedStatement statement = connection.prepareStatement("DROP TABLE personList");
+            PreparedStatement statement = connection.prepareStatement(Constants.MYSQL_DROP);
             try {
                 ResultSet set = statement.executeQuery();
             } catch (SQLException e) {
 
             }
         } catch (SQLException throwables) {
-            System.out.println("Incorect query!");
+            System.out.println(Constants.INCORRECT_QUERY);
         }
         try {
 
-            PreparedStatement statement = connection.prepareStatement("CREATE TABLE personList( id INTEGER UNIQUE, FirstName VARCHAR NOT NULL, LastName VARCHAR NOT NULL, City VARCHAR NOT NULL, age INTEGER);");
+            PreparedStatement statement = connection.prepareStatement(Constants.MYSQL_CREATE_T_PL);
             try {
                 ResultSet set = statement.executeQuery();
             } catch (SQLException e) {
@@ -50,7 +51,7 @@ public abstract class ConnectionToDataBase {
 
             }
         } catch (SQLException throwables) {
-            System.out.println("Incorect query!");
+            System.out.println(Constants.INCORRECT_QUERY);
         }
         try {
             for (Person person : personList) {
@@ -59,7 +60,7 @@ public abstract class ConnectionToDataBase {
                 String ln = person.getLastName();
                 String ci = person.getCity();
                 int age = person.getAge();
-                PreparedStatement statement = connection.prepareStatement(String.format("INSERT INTO personList(id,FirstName,LastName,City,age) VALUES (%s,'%s','%s','%s',%s);", id, fn, ln, ci, age));
+                PreparedStatement statement = connection.prepareStatement(String.format(Constants.MYSQL_INSERT, id, fn, ln, ci, age));
                 try {
                     ResultSet resultSet = statement.executeQuery();
                 } catch (SQLException e) {
@@ -67,7 +68,7 @@ public abstract class ConnectionToDataBase {
                 }
             }
         } catch (SQLException throwables) {
-            System.out.println("Not Corect SQL query");
+            System.out.println(Constants.INCORRECT_QUERY);
             throwables.printStackTrace();
         }
 
@@ -75,7 +76,7 @@ public abstract class ConnectionToDataBase {
 
     public List getList(Connection connection) {
         List<Person> personList = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("SELECT*FROM personList")) {
+        try (PreparedStatement statement = connection.prepareStatement(Constants.MYSQL_READ)) {
             final ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Person person = new Person(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(5), resultSet.getString(4));

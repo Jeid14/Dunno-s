@@ -1,15 +1,14 @@
-package com.company.database;
+package com.company.database.ext;
 
+import com.company.database.ConnectionToDataBase;
 import com.company.model.Person;
+import com.company.utils.Constants;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class H2 extends ConnectionToDataBase{
-    public static String url = "jdbc:h2:tcp://localhost/~/test";
-    public static String user = "H2";
-    public static String password = "1111";
+public class H2 extends ConnectionToDataBase {
+
     public  Connection connection ;
 
     public Connection getConnection(String url, String user, String password) {
@@ -17,19 +16,18 @@ public class H2 extends ConnectionToDataBase{
             connection = DriverManager.getConnection(url,user,password);
             return connection;
         } catch (SQLException throwables) {
-            System.out.println("DATA problem");
+            System.out.println(Constants.DATA_PROBLEM);
             throwables.printStackTrace();
-
         }
         return connection;
 
     }
 
     public void saveUpdateList(List<Person> personList, Connection connection) {
-        connection = getConnection(url,user,password);
+        connection = getConnection(Constants.H2_URL, Constants.H2_USER, Constants.H2_PASSWORD);
 
         try {
-            PreparedStatement statement = connection.prepareStatement("DROP TABLE PERSONLIST");
+            PreparedStatement statement = connection.prepareStatement(Constants.H2_DROP);
             try {
                 int set = statement.executeUpdate();
             } catch (SQLException e) {
@@ -37,19 +35,18 @@ public class H2 extends ConnectionToDataBase{
 
             }
         } catch (SQLException throwables) {
-            System.out.println("Incorect query!");
+            System.out.println(Constants.INCORRECT_QUERY);
         }
         try {
 
-            PreparedStatement statement = connection.prepareStatement("CREATE TABLE PERSONLIST( id INTEGER UNIQUE, FirstName VARCHAR NOT NULL, LastName VARCHAR NOT NULL, City VARCHAR NOT NULL, age INTEGER)");
+            PreparedStatement statement = connection.prepareStatement(Constants.H2_CREATE);
             try {
                 int set = statement.executeUpdate();
             } catch (SQLException e) {
 
-
             }
         } catch (SQLException throwables) {
-            System.out.println("Incorect query!");
+            System.out.println(Constants.INCORRECT_QUERY);
         }
         try {
             for (Person person : personList) {
@@ -59,7 +56,7 @@ public class H2 extends ConnectionToDataBase{
                 String ci = person.getCity();
                 int age = person.getAge();
 
-                PreparedStatement statement = connection.prepareStatement(String.format("INSERT INTO PERSONLIST VALUES (%s,'%s','%s','%s',%s)", id, fn, ln, ci, age));
+                PreparedStatement statement = connection.prepareStatement(String.format(Constants.H2_INSERT, id, fn, ln, ci, age));
                 try {
                     int resultSet = statement.executeUpdate();
                 } catch (SQLException e) {
@@ -67,7 +64,7 @@ public class H2 extends ConnectionToDataBase{
                 }
             }
         } catch (SQLException throwables) {
-            System.out.println("Not Corect SQL query");
+            System.out.println(Constants.INCORRECT_QUERY);
             throwables.printStackTrace();
         }
     }

@@ -2,7 +2,7 @@ package com.company.visual;
 
 import javax.swing.*;
 
-public class TextFilds {
+public class TextFields {
     JTextField textFieldId = new JTextField();
 
     JTextField textFieldFirstName = new JTextField();
@@ -11,8 +11,7 @@ public class TextFilds {
     JTextField textFieldAge = new JTextField();
 
     public JTextField getTextFildId(){
-        return textFieldId;
-    }
+        return textFieldId;}
     public JTextField getTextFieldFirstName(){
         return textFieldFirstName;
     }
