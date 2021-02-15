@@ -18,7 +18,7 @@ public class UpdateListener implements ActionListener {
     private Table table;
     private FileHelper fileHelper;
 
-    public UpdateListener(TextFields textFields, JFrame frame, FileHelper fileHelper) {
+    public UpdateListener(TextFields textFields,  JFrame frame, FileHelper fileHelper) {
         this.textFields = textFields;
         this.frame = frame;
         this.fileHelper = fileHelper;

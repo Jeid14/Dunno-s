@@ -22,8 +22,6 @@ public class DeleteListener implements ActionListener {
         this.textFields = textFields;
         this.frame = frame;
         this.fileHelper = fileHelper;
-
-
     }
 
     @Override

@@ -15,17 +15,35 @@ import java.io.IOException;
 public class InterfaceMain extends JFrame {
     JFrame frame = new JFrame(Constants.TEAM_NAME);
     TextFields textFields = new TextFields();
-
     FileHelper fileHelper = new FileHelper();
 
     public void createFrame() throws IOException {
 
-        textFields.getTextFieldId().setBounds(500, 70, 130, 25);
-        textFields.getTextFieldFirstName().setBounds(500, 120, 130, 25);
-        textFields.getTextFieldLastName().setBounds(500, 170, 130, 25);
-        textFields.getTextFieldCity().setBounds(500, 220, 130, 25);
-        textFields.getTextFieldAge().setBounds(500, 270, 130, 25);
+        //header
+        JPanel header = new JPanel();
+        header.setLayout (new FlowLayout(FlowLayout.CENTER));
+        header.setBackground(Color.lightGray);
 
+        JButton buttonOpenFile = new JButton(Constants.FILE);
+        JComboBox buttonSelectDB = new JComboBox(Constants.SQL_NON_SQL);
+
+        ActionListener openFile = new ButtonsListeners(frame, textFields, fileHelper);
+        ActionListener selectDB = new DataBaseListener(frame, textFields, fileHelper);
+
+        buttonOpenFile.addActionListener(openFile);
+        buttonSelectDB.addActionListener(selectDB);
+
+        header.add(buttonOpenFile);
+        header.add(buttonSelectDB);
+        frame.add(header, BorderLayout.NORTH);
+
+
+        //controlPanel
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
+        controlPanel.setBackground(Color.lightGray);
+
+        JLabel labelCPanel = new JLabel(Constants.CONTROL_PANEL);
         JLabel labelId = new JLabel(Constants.LABEL_ID);
         JLabel labelFirstName = new JLabel(Constants.LABEL_FIRST_NAME);
         JLabel labelLastName = new JLabel(Constants.LABEL_LAST_NAME);
@@ -33,82 +51,62 @@ public class InterfaceMain extends JFrame {
         JLabel labelAge = new JLabel(Constants.LABEL_AGE);
         JLabel labelControlPanel = new JLabel();
 
-        labelId.setBounds(500, 50, 100, 20);
-        labelFirstName.setBounds(500, 100, 100, 20);
-        labelLastName.setBounds(500, 150, 100, 20);
-        labelCity.setBounds(500, 200, 100, 20);
-        labelAge.setBounds(500, 250, 100, 20);
-        labelControlPanel.setBounds(500, 30, 100, 20);
-
-
         JButton buttonCreate = new JButton(Constants.CREATE);
         JButton buttonUpdate = new JButton(Constants.UPDATE);
         JButton buttonDelete = new JButton(Constants.DELETE);
-        JButton buttonOpenFile = new JButton(Constants.FILE);
-        JComboBox jComboBox = new JComboBox(Constants.SQL_NON_SQL);
-        JButton buttonClearAll = new JButton(Constants.CLEAR_ALL);
 
         ActionListener bDelete = new DeleteListener(textFields, frame, fileHelper);
-        ActionListener open = new ButtonsListeners(frame, textFields, fileHelper);
-        ActionListener dTListener = new DataBaseListener(frame, textFields, fileHelper);
         ActionListener bCreate = new CreateListener(textFields, frame, fileHelper);
-        ActionListener dCAll = new ClearAllLiestener(frame,fileHelper);
         ActionListener bUpdate = new UpdateListener(textFields, frame,fileHelper);
-
 
         buttonCreate.addActionListener(bCreate);
         buttonUpdate.addActionListener(bUpdate);
         buttonDelete.addActionListener(bDelete);
-        buttonOpenFile.addActionListener(open);
-        jComboBox.addActionListener(dTListener);
+
+        controlPanel.add(labelCPanel);
+        controlPanel.add(labelId);
+        controlPanel.add(textFields.getTextFieldId());
+        controlPanel.add(labelFirstName);
+        controlPanel.add( textFields.getTextFieldFirstName());
+        controlPanel.add(labelLastName);
+        controlPanel.add(textFields.getTextFieldLastName());
+        controlPanel.add(labelCity);
+        controlPanel.add(textFields.getTextFieldCity());
+        controlPanel.add(labelAge);
+        controlPanel.add(textFields.getTextFieldAge());
+        controlPanel.add(labelControlPanel);
+        controlPanel.add(buttonCreate);
+        controlPanel.add(buttonUpdate);
+        controlPanel.add(buttonDelete);
+
+        frame.add(controlPanel,BorderLayout.EAST);
 
 
-        buttonCreate.setBounds(500, 303, 130, 30);
-        buttonUpdate.setBounds(500, 348, 130, 30);
-        buttonDelete.setBounds(500, 393, 130, 30);
-        buttonOpenFile.setBounds(20, 10, 120, 30);
-        jComboBox.setBounds(160, 10, 120, 30);
-        jComboBox.setBackground(Color.lightGray);
-        buttonClearAll.setBounds(10, 385, 150, 40);
-        buttonClearAll.addActionListener(dCAll);
+        //footer
+        JPanel footer = new JPanel();
+        footer.setLayout (new FlowLayout(FlowLayout.LEFT));
+        footer.setBackground(Color.lightGray);
+        JButton buttonClearAll = new JButton(Constants.CLEAR_ALL);
+        ActionListener bClearAll = new ClearAllLiestener(frame,fileHelper);
+        buttonClearAll.addActionListener(bClearAll);
+        footer.add(buttonClearAll);
+        frame.add(footer, BorderLayout.SOUTH);
+
+        JPanel addPanel = new JPanel();
+        addPanel.setBackground(Color.lightGray);
+        frame.add(addPanel, BorderLayout.WEST);
 
 
-        frame.add(labelId);
-        frame.add(labelFirstName);
-        frame.add(labelLastName);
-        frame.add(labelCity);
-        frame.add(labelAge);
-        frame.add(labelControlPanel);
-
-
-        frame.getContentPane().setBackground(Color.decode(Constants.COLOR_MAIN_FRAME));
-        buttonUpdate.setBackground(Color.lightGray);
-        buttonCreate.setBackground(Color.lightGray);
-        buttonDelete.setBackground(Color.lightGray);
-        buttonOpenFile.setBackground(Color.lightGray);
-        buttonClearAll.setBackground(Color.lightGray);
-
-
-        frame.add(textFields.getTextFieldId());
-        frame.add(textFields.getTextFieldFirstName());
-        frame.add(textFields.getTextFieldLastName());
-        frame.add(textFields.getTextFieldCity());
-        frame.add(textFields.getTextFieldAge());
-
-        frame.setLocation(550, 250);
-        frame.add(buttonCreate);
-        frame.add(buttonUpdate);
-        frame.add(buttonDelete);
-        frame.add(buttonOpenFile);
-        frame.add(jComboBox);
-        frame.add(buttonClearAll);
+        //main
         frame.setIconImage(ImageIO.read(new File(Constants.ICON)));
-        frame.setSize(700, 500);
+        frame.setSize(630, 450);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int locationX = (screenSize.width - 800) / 2;
+        int locationY = (screenSize.height - 600) / 2;
+        frame.setBounds(locationX, locationY,800, 600);
+
         frame.setVisible(true);
     }
 }
-
-
 

@@ -82,7 +82,7 @@ public class Table {
         scrollPane = new JScrollPane(defaultTable,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        this.scrollPane.setBounds(10, 50, 470, 300);
+        this.scrollPane.setBounds(10, 35, 595, 490);
         return scrollPane;
     }
 }
