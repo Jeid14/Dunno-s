@@ -4,8 +4,9 @@ public class Constants {
 
     public static String TEAM_NAME = "Dunno-s";
 
-    public static String FILE = "File";
+    public static String FILE = "OPEN FILE";
     public static String CLEAR_ALL = "CLEAR ALL";
+    public static String CONTROL_PANEL = "            CONTROL PANEL          ";
 
     public static String ICON = "src/resources/l.png.jpg";
     public static String COLOR_MAIN_FRAME = "#cbe8f3";
@@ -26,9 +27,9 @@ public class Constants {
 
 
     //CRUD
-    public final static String CREATE = "create";
-    public final static String UPDATE = "update";
-    public final static String DELETE = "delete";
+    public final static String CREATE = "                   create                ";
+    public final static String UPDATE = "                   update                ";
+    public final static String DELETE = "                   delete                ";
 
 
     //Person
@@ -38,14 +39,14 @@ public class Constants {
     public static String CITY = "city";
     public static String AGE = "age";
 
-    public static String LABEL_ID = "Id:";
-    public static String LABEL_FIRST_NAME = "First Name:";
-    public static String LABEL_LAST_NAME = "Last Name:";
-    public static String LABEL_CITY = "City:";
-    public static String LABEL_AGE = "Age:";
+    public static String LABEL_ID = " Id:";
+    public static String LABEL_FIRST_NAME = " First Name:";
+    public static String LABEL_LAST_NAME = " Last Name:";
+    public static String LABEL_CITY = " City:";
+    public static String LABEL_AGE = " Age:";
 
     //DB
-    public static String DB_CHOSE_DATABASE = "DATABASE";
+    public static String DB_CHOSE_DATABASE = "OPEN DATABASE";
     public static String DB_CHOSE_POSTGRES = "SQL-PostgresSQL";
     public static String DB_CHOSE_H2 = "SQL-H2";
     public static String DB_CHOSE_MYSQL = "SQL-MySQL";

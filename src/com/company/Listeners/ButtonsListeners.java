@@ -14,14 +14,14 @@ import java.io.IOException;
 public class ButtonsListeners implements ActionListener {
     public static String path;
     private final JFrame frame;
+    private JPanel controlPanel;
     private final TextFields textFields;
     private final FileHelper fileHelper;
     private static Table table;
     static int countOpen = 0;
 
 
-    public ButtonsListeners(JFrame frame, TextFields textFields, FileHelper fileHelper) {
-
+    public ButtonsListeners( JFrame frame, TextFields textFields, FileHelper fileHelper) {
         this.frame = frame;
         this.textFields = textFields;
         this.fileHelper = fileHelper;
@@ -42,7 +42,6 @@ public class ButtonsListeners implements ActionListener {
                 fileHelper.isEmpty();
                 table.createTable(fileHelper.getPersonList());
                 countOpen++;
-                System.out.println(countOpen);
             } else if (countOpen > 0) {
                 table.redrawTable();
             }
